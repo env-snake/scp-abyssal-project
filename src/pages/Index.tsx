@@ -119,20 +119,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
-      <div className="bg-lines">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="diagonal-line"
-            style={{
-              left: `${i * 10}%`,
-              transform: `rotate(${10 + i * 2}deg)`,
-              animationDelay: `${i * 0.5}s`,
-            }}
-          />
-        ))}
-      </div>
-
       <div 
         className="fixed pointer-events-none z-0 rounded-full blur-3xl transition-opacity duration-300"
         style={{
@@ -158,8 +144,14 @@ const Index = () => {
             <a href="#features" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'features' ? 'active' : ''}`}>
               Особенности
             </a>
+            <a href="#play" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'play' ? 'active' : ''}`}>
+              Играть
+            </a>
             <a href="#team" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'team' ? 'active' : ''}`}>
               Команда
+            </a>
+            <a href="#info" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'info' ? 'active' : ''}`}>
+              Информация
             </a>
           </nav>
           <div className="flex gap-4">
@@ -208,10 +200,11 @@ const Index = () => {
                     style={{ animationDelay: '0.2s' }}
                   >
                     <div className="text-sm tracking-wider mb-2 text-primary">01</div>
-                    <h4 className="text-xl font-bold mb-2">Abyssal SCP RP</h4>
+                    <h4 className="text-xl font-bold mb-2">Станция 119</h4>
                     <p className="text-sm leading-relaxed opacity-80">
-                      Abyssal — это уникальный SCP RP проект разработанный на базе игры Garry's Mod, 
-                      который предлагает своим игрокам погрузиться в мир океанской бездны.
+                      Добро пожаловать на станцию 119, которая расположена на дне океана, на глубине 3800 метров. 
+                      Она полностью автономна, погружена во мрак и находится под огромным давлением бездны. 
+                      Её главная цель — изучение и содержание аномальных объектов.
                     </p>
                   </div>
 
@@ -251,10 +244,7 @@ const Index = () => {
                 <img
                   src={getAboutImage()}
                   alt="Станция 119"
-                  className="w-full h-auto rounded-lg shadow-2xl transition-all duration-500 ease-out"
-                  style={{ 
-                    border: '2px solid rgba(29, 185, 84, 0.3)',
-                  }}
+                  className="w-full h-auto rounded-lg shadow-2xl transition-all duration-700 ease-in-out"
                 />
               </div>
             </div>
@@ -266,7 +256,7 @@ const Index = () => {
             <div className="text-center mb-20 animate-fade-in">
               <h3 className="text-4xl font-bold tracking-wide mb-4">ОСОБЕННОСТИ</h3>
               <p className="text-lg opacity-80 max-w-2xl mx-auto">
-                Погрузитесь в уникальный мир подводного SCP комплекса
+                Что делает Abyssal уникальным
               </p>
             </div>
 
@@ -274,11 +264,11 @@ const Index = () => {
               {features.map((feature, index) => (
                 <Card
                   key={index}
-                  className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-300 hover:bg-card/70 animate-fade-in cursor-pointer"
+                  className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 animate-fade-in cursor-pointer hover:scale-105"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/20 rounded-lg">
+                    <div className="p-3 bg-primary/20 rounded-lg transition-all duration-500">
                       <Icon name={feature.icon} size={24} className="text-primary" />
                     </div>
                     <div>
@@ -300,10 +290,7 @@ const Index = () => {
               <img
                 src="https://cdn.poehali.dev/files/d9980373-83f5-4739-b193-93f003012c87.png"
                 alt="Коллаж проекта"
-                className="w-full h-auto rounded-lg shadow-2xl"
-                style={{ 
-                  border: '2px solid rgba(29, 185, 84, 0.3)',
-                }}
+                className="w-full h-auto rounded-lg shadow-2xl transition-all duration-700"
               />
             </div>
           </div>
@@ -319,7 +306,7 @@ const Index = () => {
             </div>
 
             <div className="max-w-4xl mx-auto space-y-8">
-              <div className="info-bar border-l-2 border-primary pl-6 py-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="info-bar border-l-2 border-primary pl-6 py-6 animate-fade-in transition-all duration-500" style={{ animationDelay: '0.2s' }}>
                 <div className="text-sm tracking-wider mb-3 text-primary font-bold">ШАГ 1</div>
                 <h4 className="text-2xl font-bold mb-3">Установить Garry's Mod</h4>
                 <p className="text-base leading-relaxed opacity-80">
@@ -327,7 +314,7 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="info-bar border-l-2 border-white/20 pl-6 py-6 animate-fade-in hover:border-primary" style={{ animationDelay: '0.4s' }}>
+              <div className="info-bar border-l-2 border-white/20 pl-6 py-6 animate-fade-in hover:border-primary transition-all duration-500" style={{ animationDelay: '0.4s' }}>
                 <div className="text-sm tracking-wider mb-3 text-muted-foreground font-bold">ШАГ 2</div>
                 <h4 className="text-2xl font-bold mb-3">Установить контент сервера</h4>
                 <p className="text-base leading-relaxed opacity-80">
@@ -335,7 +322,7 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="info-bar border-l-2 border-white/20 pl-6 py-6 animate-fade-in hover:border-primary" style={{ animationDelay: '0.6s' }}>
+              <div className="info-bar border-l-2 border-white/20 pl-6 py-6 animate-fade-in hover:border-primary transition-all duration-500" style={{ animationDelay: '0.6s' }}>
                 <div className="text-sm tracking-wider mb-3 text-muted-foreground font-bold">ШАГ 3</div>
                 <h4 className="text-2xl font-bold mb-3">Зайдите на сервер</h4>
                 <p className="text-base leading-relaxed opacity-80">
@@ -349,9 +336,9 @@ const Index = () => {
         <section id="team" className="py-32 relative">
           <div className="container mx-auto px-4">
             <div className="text-center mb-20 animate-fade-in">
-              <h3 className="text-4xl font-bold tracking-wide mb-4">КОМАНДА</h3>
+              <h3 className="text-4xl font-bold tracking-wide mb-4">КОМАНДА РАЗРАБОТКИ</h3>
               <p className="text-lg opacity-80">
-                Профессионалы, создающие Abyssal
+                Люди, создающие Abyssal
               </p>
             </div>
 
@@ -359,13 +346,13 @@ const Index = () => {
               {team.map((member, index) => (
                 <Card
                   key={index}
-                  className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-300 hover:bg-card/70 animate-fade-in text-center"
+                  className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-primary/30"
+                    className="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-primary/30 transition-all duration-500"
                   />
                   <h4 className="text-xl font-bold mb-2">{member.name}</h4>
                   <p className="text-sm opacity-80">{member.role}</p>
@@ -385,27 +372,27 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-300 hover:bg-card/70 animate-fade-in text-center cursor-pointer">
-                <Icon name="FileText" size={48} className="text-primary mx-auto mb-4" />
+              <Card className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer">
+                <Icon name="FileText" size={48} className="text-primary mx-auto mb-4 transition-all duration-500" />
                 <h4 className="text-2xl font-bold mb-4">Правила сервера</h4>
                 <p className="text-sm opacity-80 mb-6">
                   Ознакомьтесь с правилами перед игрой
                 </p>
                 <Button 
-                  className="corner-bracket bg-primary text-black hover:bg-primary/80"
+                  className="corner-bracket bg-primary text-black hover:bg-primary/80 transition-all duration-300"
                   onClick={() => window.open('https://docs.google.com/document/d/1-kfYPFuVXjW8GpphXEhmNSu0ej3fMNtHBn-2HeK0oP0/edit', '_blank')}
                 >
                   Читать правила
                 </Button>
               </Card>
 
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-300 hover:bg-card/70 animate-fade-in text-center cursor-pointer" style={{ animationDelay: '0.2s' }}>
-                <Icon name="MessageCircle" size={48} className="text-primary mx-auto mb-4" />
+              <Card className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer" style={{ animationDelay: '0.2s' }}>
+                <Icon name="MessageCircle" size={48} className="text-primary mx-auto mb-4 transition-all duration-500" />
                 <h4 className="text-2xl font-bold mb-4">Discord сообщество</h4>
                 <p className="text-sm opacity-80 mb-6">
                   Общайтесь с игроками и следите за новостями
                 </p>
-                <Button className="corner-bracket bg-primary text-black hover:bg-primary/80">
+                <Button className="corner-bracket bg-primary text-black hover:bg-primary/80 transition-all duration-300">
                   Присоединиться
                 </Button>
               </Card>
@@ -419,13 +406,13 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-3">
               <img src="https://cdn.poehali.dev/files/4468007d-3ca2-4d75-af22-bd7b04f04385.png" alt="Abyssal" className="w-8 h-8" />
-              <span className="text-sm tracking-wider opacity-80">© 2024 ABYSSAL. Все права защищены</span>
+              <span className="text-sm tracking-wider opacity-80">© 2025 ABYSSAL. Все права защищены</span>
             </div>
             <div className="flex gap-6">
-              <a href="#" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
+              <a href="#" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
                 <Icon name="MessageCircle" size={20} />
               </a>
-              <a href="#" className="opacity-80 hover:opacity-100 hover:text-primary transition-all">
+              <a href="#" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
                 <Icon name="Youtube" size={20} />
               </a>
             </div>
