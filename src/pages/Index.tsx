@@ -71,10 +71,9 @@ const Index = () => {
 
   const bubbles = [...Array(40)].map((_, i) => ({
     left: Math.random() * 100,
-    bottom: Math.random() * 100,
     size: 5 + Math.random() * 15,
     duration: 20 + Math.random() * 30,
-    delay: Math.random() * 20,
+    delay: -(Math.random() * 30),
   }));
 
   const lightRays = [...Array(8)].map((_, i) => ({
@@ -174,10 +173,10 @@ const Index = () => {
               Abyssal — это уникальный SCP RP проект разработанный на базе игры Garry's Mod,<br />
               который предлагает своим игрокам погрузиться в мир океанской бездны
             </p>
-            <div className="flex justify-center items-center gap-2 animate-bounce" style={{ animationDelay: '1s' }}>
+            <a href="#about" className="flex justify-center items-center gap-2 animate-bounce cursor-pointer" style={{ animationDelay: '1s' }}>
               <Icon name="ChevronDown" size={20} />
               <span className="text-sm tracking-widest">Прокрутить</span>
-            </div>
+            </a>
           </div>
         </section>
 
@@ -260,7 +259,40 @@ const Index = () => {
           </div>
         </section>
 
-
+        <section className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="corner-bracket overflow-hidden aspect-video">
+                <img 
+                  src="https://cdn.poehali.dev/files/2acc98ac-6452-4579-8a05-0c09f442b535.jpg" 
+                  alt="Station View 1" 
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="corner-bracket overflow-hidden aspect-video">
+                <img 
+                  src="https://cdn.poehali.dev/files/00ff84c6-e55d-4e12-9fb4-004024a85a16.jpg" 
+                  alt="Station View 2" 
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="corner-bracket overflow-hidden aspect-video">
+                <img 
+                  src="https://cdn.poehali.dev/files/703e246f-04f1-42e7-aa4f-ec0af8bceb46.jpg" 
+                  alt="Station View 3" 
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="corner-bracket overflow-hidden aspect-video">
+                <img 
+                  src="https://cdn.poehali.dev/files/f539e9d1-ef24-41c6-8949-08f330473655.png" 
+                  alt="Station View 4" 
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section id="team" className="py-32 relative">
           <div className="container mx-auto px-4">
