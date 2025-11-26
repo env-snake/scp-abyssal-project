@@ -69,12 +69,7 @@ const Index = () => {
     { name: 'NoName', role: 'Разработчик Discord бота', image: 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png' },
   ];
 
-  const bubbles = [...Array(40)].map((_, i) => ({
-    left: Math.random() * 100,
-    size: 5 + Math.random() * 15,
-    duration: 20 + Math.random() * 30,
-    delay: -(Math.random() * 30),
-  }));
+
 
   const lightRays = [...Array(8)].map((_, i) => ({
     left: (100 / 8) * i + Math.random() * 10,
@@ -90,21 +85,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: `rgb(${waterColor.r}, ${waterColor.g}, ${waterColor.b})` }}>
-      <div className="absolute inset-0 pointer-events-none z-0">
-        {bubbles.map((bubble, i) => (
-          <div
-            key={i}
-            className="bubble"
-            style={{
-              left: `${bubble.left}%`,
-              width: `${bubble.size}px`,
-              height: `${bubble.size}px`,
-              animation: `bubble-rise ${bubble.duration}s linear infinite`,
-              animationDelay: `${bubble.delay}s`,
-            }}
-          />
-        ))}
-      </div>
+
 
       <div className="fixed inset-0 pointer-events-none z-0 opacity-20">
         {lightRays.map((ray, i) => (
@@ -170,8 +151,8 @@ const Index = () => {
               />
             </div>
             <p className="text-lg md:text-2xl mb-12 tracking-wide opacity-90 animate-fade-in max-w-4xl mx-auto font-bold" style={{ animationDelay: '0.4s', fontFamily: 'Montserrat, sans-serif' }}>
-              Abyssal — это уникальный SCP RP проект разработанный на базе игры Garry's Mod,<br />
-              который предлагает своим игрокам погрузиться в мир океанской бездны
+              <span className="text-primary">Abyssal</span> — это уникальный <span className="text-primary">SCP RP</span> проект разработанный на базе игры <span className="text-primary">Garry's Mod</span>,<br />
+              который предлагает своим игрокам погрузиться в мир <span className="text-primary">океанской бездны</span>
             </p>
             <a href="#about" className="flex justify-center items-center gap-2 animate-bounce cursor-pointer" style={{ animationDelay: '1s' }}>
               <Icon name="ChevronDown" size={20} />
@@ -261,7 +242,14 @@ const Index = () => {
 
         <section className="py-20 relative">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="corner-bracket overflow-hidden">
+              <img 
+                src="https://cdn.poehali.dev/files/1bf6ec50-48fb-4fb0-bb39-2d15dd7ae2ab.png" 
+                alt="Station Panorama" 
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 mt-6">
               <div className="corner-bracket overflow-hidden aspect-video">
                 <img 
                   src="https://cdn.poehali.dev/files/2acc98ac-6452-4579-8a05-0c09f442b535.jpg" 
@@ -280,13 +268,6 @@ const Index = () => {
                 <img 
                   src="https://cdn.poehali.dev/files/703e246f-04f1-42e7-aa4f-ec0af8bceb46.jpg" 
                   alt="Station View 3" 
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="corner-bracket overflow-hidden aspect-video">
-                <img 
-                  src="https://cdn.poehali.dev/files/f539e9d1-ef24-41c6-8949-08f330473655.png" 
-                  alt="Station View 4" 
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
               </div>
