@@ -78,15 +78,20 @@ const Index = () => {
 
 
 
-  const bubbles = [...Array(15)].map((_, i) => ({
+  const bubbles = [...Array(30)].map((_, i) => ({
     left: Math.random() * 100,
-    size: Math.random() * 6 + 3,
+    size: Math.random() * 15 + 8,
     duration: Math.random() * 15 + 25,
     delay: Math.random() * 40,
   }));
 
+  const depthProgress = Math.min(scrollY / 2500, 1);
+  const bgOpacity = 0.05 + depthProgress * 0.15;
+
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
+      <div className="fixed inset-0 grid-bg pointer-events-none z-0" style={{ opacity: bgOpacity }}></div>
+      
       <div className="fixed inset-0 pointer-events-none z-0">
         {bubbles.map((bubble, i) => (
           <div
@@ -102,6 +107,11 @@ const Index = () => {
           />
         ))}
       </div>
+      
+      <div 
+        className="fixed inset-0 bg-black pointer-events-none z-0"
+        style={{ opacity: depthProgress * 0.4 }}
+      ></div>
 
 
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#051510]/90 backdrop-blur-sm border-b border-primary/20">
