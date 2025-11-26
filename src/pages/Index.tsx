@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,11 +22,17 @@ const Index = () => {
       setActiveSection(current || '');
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
     handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -77,6 +84,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
+      <div className="fixed inset-0 grid-bg pointer-events-none z-0"></div>
+      <div 
+        className="fixed pointer-events-none z-0 rounded-full blur-3xl transition-opacity duration-300"
+        style={{
+          left: `${mousePos.x}px`,
+          top: `${mousePos.y}px`,
+          width: '400px',
+          height: '400px',
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(circle, rgba(29, 185, 84, 0.3) 0%, transparent 70%)',
+        }}
+      ></div>
 
 
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#051510]/90 backdrop-blur-sm border-b border-primary/20">
