@@ -39,9 +39,9 @@ const Index = () => {
       description: 'Уникальная подводная зона на дне океана с пугающей и глубоководной атмосферой',
     },
     {
-      icon: 'Users',
-      title: 'Ролевая игра',
-      description: 'Развитая система ролей: исследователи, охрана, научный персонал, D-класс и другие роли',
+      icon: 'Settings',
+      title: 'Уникальные системы',
+      description: 'Затопление комплекса, система миссий, система рейдов',
     },
     {
       icon: 'Zap',
@@ -59,9 +59,9 @@ const Index = () => {
       description: 'Уникальные подводные объекты и существа, требующие особых протоколов содержания',
     },
     {
-      icon: 'Settings',
-      title: 'Уникальные системы',
-      description: 'Затопление комплекса, система миссий, система рейдов',
+      icon: 'Users',
+      title: 'Ролевая игра',
+      description: 'Развитая система ролей: исследователи, охрана, научный персонал, D-класс и другие роли',
     },
   ];
 
@@ -78,8 +78,30 @@ const Index = () => {
 
 
 
+  const bubbles = [...Array(15)].map((_, i) => ({
+    left: Math.random() * 100,
+    size: Math.random() * 6 + 3,
+    duration: Math.random() * 15 + 25,
+    delay: Math.random() * 40,
+  }));
+
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {bubbles.map((bubble, i) => (
+          <div
+            key={i}
+            className="bubble"
+            style={{
+              left: `${bubble.left}%`,
+              width: `${bubble.size}px`,
+              height: `${bubble.size}px`,
+              animationDuration: `${bubble.duration}s`,
+              animationDelay: `-${bubble.delay}s`,
+            }}
+          />
+        ))}
+      </div>
 
 
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#051510]/90 backdrop-blur-sm border-b border-primary/20">
