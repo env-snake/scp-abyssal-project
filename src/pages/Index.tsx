@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [hoveredTab, setHoveredTab] = useState<number | null>(null);
+  const [selectedTab, setSelectedTab] = useState<number>(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,19 +102,21 @@ const Index = () => {
     },
   ];
 
+  const [selectedPlayStep, setSelectedPlayStep] = useState<number>(1);
+
   const team = [
-    { name: 'Baltica', role: 'Владелец сообщества', image: 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png' },
-    { name: 'Atu', role: 'Владелец сообщества', image: 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png' },
-    { name: 'CEO', role: 'Ведущий разработчик систем', image: 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png' },
-    { name: 'Snake', role: 'Ведущий разработчик карты', image: 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png' },
-    { name: 'Golup', role: '3D artist', image: 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png' },
+    { name: 'Baltica', role: 'Владелец сообщества', image: 'https://i.imgur.com/riJ3JPA.png' },
+    { name: 'Atu', role: 'Владелец сообщества', image: 'https://i.imgur.com/FkFWiLi.png' },
+    { name: 'CEO', role: 'Ведущий разработчик систем', image: 'https://i.imgur.com/lhNoGIM.png' },
+    { name: 'Snake', role: 'Ведущий разработчик карты', image: 'https://i.imgur.com/R5GqTmZ.png' },
     { name: 'NoName', role: 'Разработчик Discord бота', image: 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png' },
   ];
 
   const getAboutImage = () => {
-    if (hoveredTab === 2) return 'https://cdn.poehali.dev/files/b488ab25-0e12-47a2-9429-a610b5eb8d4f.png';
-    if (hoveredTab === 3) return 'https://cdn.poehali.dev/files/0d34fa37-a2ef-43a5-a8de-88ca9bef29c3.png';
-    return 'https://cdn.poehali.dev/files/31199a1a-f99f-4780-b831-6ff4e1991487.png';
+    if (selectedTab === 1) return 'https://cdn.poehali.dev/files/57ed5eeb-bf78-4d2b-b81f-9ebbd9f4d88b.png';
+    if (selectedTab === 2) return 'https://cdn.poehali.dev/files/b033cad8-ce5e-4a10-b97b-73adaef8ae87.png';
+    if (selectedTab === 3) return 'https://cdn.poehali.dev/files/14d2838e-a9a1-4442-af1c-70d449c6dec1.png';
+    return 'https://cdn.poehali.dev/files/57ed5eeb-bf78-4d2b-b81f-9ebbd9f4d88b.png';
   };
 
   return (
@@ -196,8 +198,11 @@ const Index = () => {
 
                 <div className="space-y-6">
                   <div 
-                    className="info-bar border-l-2 border-primary pl-4 py-4 animate-fade-in cursor-pointer" 
+                    className={`info-bar-grid border-l-2 pl-4 py-4 animate-fade-in cursor-pointer relative overflow-hidden ${
+                      selectedTab === 1 ? 'border-primary' : 'border-white/20 hover:border-primary'
+                    }`}
                     style={{ animationDelay: '0.2s' }}
+                    onClick={() => setSelectedTab(1)}
                   >
                     <div className="text-sm tracking-wider mb-2 text-primary">01</div>
                     <h4 className="text-xl font-bold mb-2">Abyssal SCP RP</h4>
@@ -207,10 +212,11 @@ const Index = () => {
                   </div>
 
                   <div 
-                    className="info-bar border-l-2 border-white/20 pl-4 py-4 animate-fade-in cursor-pointer hover:border-primary" 
+                    className={`info-bar-grid border-l-2 pl-4 py-4 animate-fade-in cursor-pointer relative overflow-hidden ${
+                      selectedTab === 2 ? 'border-primary' : 'border-white/20 hover:border-primary'
+                    }`}
                     style={{ animationDelay: '0.4s' }}
-                    onMouseEnter={() => setHoveredTab(2)}
-                    onMouseLeave={() => setHoveredTab(null)}
+                    onClick={() => setSelectedTab(2)}
                   >
                     <div className="text-sm tracking-wider mb-2 text-muted-foreground">02</div>
                     <h4 className="text-xl font-bold mb-2">Ролевой проект</h4>
@@ -220,10 +226,11 @@ const Index = () => {
                   </div>
 
                   <div 
-                    className="info-bar border-l-2 border-white/20 pl-4 py-4 animate-fade-in cursor-pointer hover:border-primary" 
+                    className={`info-bar-grid border-l-2 pl-4 py-4 animate-fade-in cursor-pointer relative overflow-hidden ${
+                      selectedTab === 3 ? 'border-primary' : 'border-white/20 hover:border-primary'
+                    }`}
                     style={{ animationDelay: '0.6s' }}
-                    onMouseEnter={() => setHoveredTab(3)}
-                    onMouseLeave={() => setHoveredTab(null)}
+                    onClick={() => setSelectedTab(3)}
                   >
                     <div className="text-sm tracking-wider mb-2 text-muted-foreground">03</div>
                     <h4 className="text-xl font-bold mb-2">Выживание</h4>
@@ -254,19 +261,19 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
               {features.map((feature, index) => (
                 <Card
                   key={index}
-                  className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 animate-fade-in cursor-pointer hover:scale-105"
+                  className="info-bar-grid p-6 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 animate-fade-in cursor-pointer relative overflow-hidden"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/20 rounded-lg transition-all duration-500">
-                      <Icon name={feature.icon} size={24} className="text-primary" />
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-primary/20 rounded-lg transition-all duration-500 shrink-0">
+                      <Icon name={feature.icon} size={28} className="text-primary" />
                     </div>
-                    <div>
-                      <h4 className="text-xl font-bold mb-3">{feature.title}</h4>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold mb-2">{feature.title}</h4>
                       <p className="text-sm leading-relaxed opacity-80">
                         {feature.description}
                       </p>
@@ -300,7 +307,13 @@ const Index = () => {
             </div>
 
             <div className="max-w-4xl mx-auto space-y-8">
-              <div className="info-bar border-l-2 border-primary pl-6 py-6 animate-fade-in transition-all duration-500" style={{ animationDelay: '0.2s' }}>
+              <div 
+                className={`info-bar-grid border-l-2 pl-6 py-6 animate-fade-in transition-all duration-500 cursor-pointer relative overflow-hidden ${
+                  selectedPlayStep === 1 ? 'border-primary' : 'border-white/20 hover:border-primary'
+                }`}
+                style={{ animationDelay: '0.2s' }}
+                onClick={() => setSelectedPlayStep(1)}
+              >
                 <div className="text-sm tracking-wider mb-3 text-primary font-bold">ШАГ 1</div>
                 <h4 className="text-2xl font-bold mb-3">Установить Garry's Mod</h4>
                 <p className="text-base leading-relaxed opacity-80">
@@ -308,7 +321,13 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="info-bar border-l-2 border-white/20 pl-6 py-6 animate-fade-in hover:border-primary transition-all duration-500" style={{ animationDelay: '0.4s' }}>
+              <div 
+                className={`info-bar-grid border-l-2 pl-6 py-6 animate-fade-in transition-all duration-500 cursor-pointer relative overflow-hidden ${
+                  selectedPlayStep === 2 ? 'border-primary' : 'border-white/20 hover:border-primary'
+                }`}
+                style={{ animationDelay: '0.4s' }}
+                onClick={() => setSelectedPlayStep(2)}
+              >
                 <div className="text-sm tracking-wider mb-3 text-muted-foreground font-bold">ШАГ 2</div>
                 <h4 className="text-2xl font-bold mb-3">Установить контент сервера</h4>
                 <p className="text-base leading-relaxed opacity-80">
@@ -316,7 +335,13 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="info-bar border-l-2 border-white/20 pl-6 py-6 animate-fade-in hover:border-primary transition-all duration-500" style={{ animationDelay: '0.6s' }}>
+              <div 
+                className={`info-bar-grid border-l-2 pl-6 py-6 animate-fade-in transition-all duration-500 cursor-pointer relative overflow-hidden ${
+                  selectedPlayStep === 3 ? 'border-primary' : 'border-white/20 hover:border-primary'
+                }`}
+                style={{ animationDelay: '0.6s' }}
+                onClick={() => setSelectedPlayStep(3)}
+              >
                 <div className="text-sm tracking-wider mb-3 text-muted-foreground font-bold">ШАГ 3</div>
                 <h4 className="text-2xl font-bold mb-3">Зайдите на сервер</h4>
                 <p className="text-base leading-relaxed opacity-80">
@@ -338,19 +363,19 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {team.map((member, index) => (
-                <Card
+                <div
                   key={index}
-                  className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center"
+                  className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 hover:bg-card/70 animate-fade-in text-center relative overflow-hidden rounded-lg"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-primary/30 transition-all duration-500"
+                    className="w-28 h-28 rounded-full mx-auto mb-4 border-2 border-primary/50 transition-all duration-500 object-cover"
                   />
                   <h4 className="text-xl font-bold mb-2">{member.name}</h4>
                   <p className="text-sm opacity-80">{member.role}</p>
-                </Card>
+                </div>
               ))}
             </div>
           </div>
@@ -388,7 +413,7 @@ const Index = () => {
                 </p>
                 <Button 
                   className="bg-primary/10 text-primary border-2 border-primary hover:bg-primary hover:text-black transition-all duration-300"
-                  onClick={() => window.open('https://discord.gg/your-server', '_blank')}
+                  onClick={() => window.open('https://discord.gg/jXuuBA9GXr', '_blank')}
                 >
                   Присоединиться
                 </Button>
@@ -406,10 +431,10 @@ const Index = () => {
               <span className="text-sm tracking-wider opacity-80">© 2025 ABYSSAL. Все права защищены</span>
             </div>
             <div className="flex gap-6">
-              <a href="#" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
+              <a href="https://discord.gg/jXuuBA9GXr" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
                 <Icon name="MessageCircle" size={20} />
               </a>
-              <a href="#" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
+              <a href="https://www.youtube.com/@newmzmeyleveldesign" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
                 <Icon name="Youtube" size={20} />
               </a>
             </div>

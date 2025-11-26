@@ -154,6 +154,23 @@
     transform: translateX(10px);
   }
 
+  .info-bar-grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(29, 185, 84, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29, 185, 84, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .info-bar-grid > * {
+    position: relative;
+    z-index: 1;
+  }
+
   @keyframes scroll-left {
     0% {
       transform: translateX(100%);
