@@ -21,12 +21,42 @@ const Donate = () => {
   }, []);
 
   const donatePackages = [
-    { amount: 100, bonus: 0, label: '100 ₽', popular: false },
-    { amount: 250, bonus: 0, label: '250 ₽', popular: false },
-    { amount: 500, bonus: 0, label: '500 ₽', popular: true },
-    { amount: 1000, bonus: 0, label: '1000 ₽', popular: false },
-    { amount: 2500, bonus: 0, label: '2500 ₽', popular: false },
-    { amount: 5000, bonus: 0, label: '5000 ₽', popular: false },
+    { 
+      amount: 100, 
+      label: '100 ₽', 
+      image: 'https://cdn.poehali.dev/projects/43373741-381d-4f2d-884e-64c504f73daa/files/70968dcb-9ca0-4931-bcd5-2fde67269c99.jpg',
+      size: 'small'
+    },
+    { 
+      amount: 250, 
+      label: '250 ₽', 
+      image: 'https://cdn.poehali.dev/projects/43373741-381d-4f2d-884e-64c504f73daa/files/70968dcb-9ca0-4931-bcd5-2fde67269c99.jpg',
+      size: 'small'
+    },
+    { 
+      amount: 500, 
+      label: '500 ₽', 
+      image: 'https://cdn.poehali.dev/projects/43373741-381d-4f2d-884e-64c504f73daa/files/073655ff-3f9e-471c-9f1a-f81596ed0c5b.jpg',
+      size: 'medium'
+    },
+    { 
+      amount: 1000, 
+      label: '1000 ₽', 
+      image: 'https://cdn.poehali.dev/projects/43373741-381d-4f2d-884e-64c504f73daa/files/073655ff-3f9e-471c-9f1a-f81596ed0c5b.jpg',
+      size: 'medium'
+    },
+    { 
+      amount: 2500, 
+      label: '2500 ₽', 
+      image: 'https://cdn.poehali.dev/projects/43373741-381d-4f2d-884e-64c504f73daa/files/f803fdae-3f6d-438c-b996-77ee8b3ffede.jpg',
+      size: 'large'
+    },
+    { 
+      amount: 5000, 
+      label: '5000 ₽', 
+      image: 'https://cdn.poehali.dev/projects/43373741-381d-4f2d-884e-64c504f73daa/files/f803fdae-3f6d-438c-b996-77ee8b3ffede.jpg',
+      size: 'large'
+    },
   ];
 
   const handleDonate = async (selectedAmount: number) => {
@@ -101,14 +131,13 @@ const Donate = () => {
             <img src="https://cdn.poehali.dev/files/4468007d-3ca2-4d75-af22-bd7b04f04385.png" alt="Abyssal" className="w-10 h-10" />
             <h1 className="text-xl font-bold tracking-wider">ABYSSAL</h1>
           </a>
-          <nav className="flex gap-8 text-sm">
-            <a href="/" className="nav-link hover:text-primary transition-colors tracking-wide">
-              Главная
-            </a>
-            <a href="/donate" className="nav-link text-primary tracking-wide">
-              Донат
-            </a>
-          </nav>
+          <Button 
+            onClick={() => window.history.back()}
+            className="bg-primary/10 text-primary border-2 border-primary hover:bg-primary hover:text-black transition-all duration-300 px-6 flex items-center gap-2 group"
+          >
+            <Icon name="ArrowLeft" size={18} className="group-hover:-translate-x-1 transition-transform duration-300" />
+            Вернуться
+          </Button>
         </div>
       </header>
 
@@ -128,7 +157,7 @@ const Donate = () => {
           </div>
 
           <div className="max-w-2xl mx-auto mb-16 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <Card className="p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 relative overflow-hidden">
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 relative overflow-hidden rounded-2xl">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
               <div className="relative">
                 <label className="block text-lg font-bold mb-4 tracking-wide flex items-center gap-2">
@@ -155,34 +184,32 @@ const Donate = () => {
 
           <div className="mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold tracking-wide mb-2">ВЫБЕРИТЕ СУММУ</h2>
-              <p className="text-sm opacity-70">Выберите готовый пакет или введите свою сумму ниже</p>
+              <h2 className="text-3xl font-bold tracking-wide mb-2">ВЫБЕРИТЕ СУНДУК</h2>
+              <p className="text-sm opacity-70">Чем больше сундук, тем больше донат-валюты</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {donatePackages.map((pkg, index) => (
                 <Card
                   key={pkg.amount}
-                  className={`relative p-8 backdrop-blur-sm border-2 cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 animate-fade-in group ${
-                    pkg.popular
-                      ? 'bg-primary/10 border-primary hover:bg-primary/20'
-                      : 'bg-card/30 border-primary/20 hover:border-primary hover:bg-card/50'
-                  }`}
+                  className="relative p-8 backdrop-blur-sm border-2 cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 animate-fade-in group bg-card/30 border-primary/20 hover:border-primary hover:bg-card/50 rounded-2xl"
                   style={{ animationDelay: `${0.3 + index * 0.05}s` }}
                   onClick={() => handleDonate(pkg.amount)}
                 >
-                  {pkg.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-black text-xs font-bold rounded-full">
-                      ПОПУЛЯРНОЕ
-                    </div>
-                  )}
                   <div className="text-center relative">
                     <div className="absolute inset-0 bg-primary/5 rounded-lg blur-xl group-hover:bg-primary/10 transition-all duration-500"></div>
                     <div className="relative">
-                      <div className="text-5xl font-bold text-primary mb-3">{pkg.amount}</div>
-                      <div className="text-2xl font-bold mb-2">₽</div>
+                      <div className="mb-6 relative">
+                        <img 
+                          src={pkg.image} 
+                          alt={`Сундук ${pkg.amount}₽`}
+                          className="w-32 h-32 mx-auto object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="text-4xl font-bold text-primary mb-2">{pkg.amount}</div>
+                      <div className="text-xl font-bold mb-3">₽</div>
                       <div className="h-px bg-primary/30 my-4 mx-auto w-16"></div>
-                      <div className="text-lg opacity-90 mb-1">Получите</div>
-                      <div className="text-3xl font-bold text-primary">{pkg.amount}</div>
+                      <div className="text-base opacity-90 mb-1">Получите</div>
+                      <div className="text-2xl font-bold text-primary">{pkg.amount}</div>
                       <div className="text-sm opacity-70 mt-1">донат-валюты</div>
                     </div>
                   </div>
@@ -192,7 +219,7 @@ const Donate = () => {
           </div>
 
           <div className="max-w-3xl mx-auto mb-16 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-            <Card className="p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/20 hover:border-primary transition-all duration-500">
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/20 hover:border-primary transition-all duration-500 rounded-2xl">
               <h3 className="text-2xl font-bold mb-6 tracking-wide text-center">СВОЯ СУММА</h3>
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1">
@@ -201,14 +228,14 @@ const Donate = () => {
                     placeholder="Введите сумму (мин. 100 ₽)"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="bg-background/70 border-2 border-primary/30 focus:border-primary text-white text-lg h-14 transition-all duration-300"
+                    className="bg-background/70 border-2 border-primary/30 focus:border-primary text-white text-lg h-14 transition-all duration-300 rounded-xl"
                     min="100"
                   />
                 </div>
                 <Button
                   onClick={handleCustomDonate}
                   disabled={loading}
-                  className="bg-primary text-black hover:bg-primary/90 font-bold px-12 h-14 text-lg transition-all duration-300 hover:scale-105"
+                  className="bg-primary text-black hover:bg-primary/90 font-bold px-12 h-14 text-lg transition-all duration-300 hover:scale-105 rounded-xl"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -227,7 +254,7 @@ const Donate = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            <Card className="p-8 bg-card/30 border-2 border-primary/20 text-center hover:border-primary transition-all duration-500 hover:scale-105 group">
+            <Card className="p-8 bg-card/30 border-2 border-primary/20 text-center hover:border-primary transition-all duration-500 hover:scale-105 group rounded-2xl">
               <div className="relative inline-block mb-4">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
                 <Icon name="Shield" size={48} className="text-primary relative" />
@@ -235,7 +262,7 @@ const Donate = () => {
               <h3 className="text-xl font-bold mb-2">Безопасно</h3>
               <p className="text-sm opacity-80">Оплата через Т-Банк с защитой данных</p>
             </Card>
-            <Card className="p-8 bg-card/30 border-2 border-primary/20 text-center hover:border-primary transition-all duration-500 hover:scale-105 group">
+            <Card className="p-8 bg-card/30 border-2 border-primary/20 text-center hover:border-primary transition-all duration-500 hover:scale-105 group rounded-2xl">
               <div className="relative inline-block mb-4">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
                 <Icon name="Zap" size={48} className="text-primary relative" />
@@ -243,7 +270,7 @@ const Donate = () => {
               <h3 className="text-xl font-bold mb-2">Мгновенно</h3>
               <p className="text-sm opacity-80">Зачисление в течение 1-5 минут</p>
             </Card>
-            <Card className="p-8 bg-card/30 border-2 border-primary/20 text-center hover:border-primary transition-all duration-500 hover:scale-105 group">
+            <Card className="p-8 bg-card/30 border-2 border-primary/20 text-center hover:border-primary transition-all duration-500 hover:scale-105 group rounded-2xl">
               <div className="relative inline-block mb-4">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
                 <Icon name="HeadphonesIcon" size={48} className="text-primary relative" />

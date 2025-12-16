@@ -7,6 +7,15 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredTab, setHoveredTab] = useState<number>(1);
+  const [autoScrollTab, setAutoScrollTab] = useState<number>(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAutoScrollTab((prev) => (prev >= 3 ? 1 : prev + 1));
+      setHoveredTab((prev) => (prev >= 3 ? 1 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -150,9 +159,6 @@ const Index = () => {
             </a>
             <a href="#team" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'team' ? 'active' : ''}`}>
               Команда
-            </a>
-            <a href="/donate" className="nav-link hover:text-primary transition-colors tracking-wide">
-              Донат
             </a>
           </nav>
           <div className="flex gap-4">
@@ -323,11 +329,15 @@ const Index = () => {
                 }`}
                 style={{ animationDelay: '0.2s' }}
                 onMouseEnter={() => setHoveredPlayStep(1)}
+                onClick={() => window.open('https://store.steampowered.com/app/4000/Garrys_Mod/', '_blank')}
               >
                 <div className={`text-sm tracking-wider mb-3 font-bold transition-colors duration-300 ${
                   hoveredPlayStep === 1 ? 'text-primary' : 'text-muted-foreground'
                 }`}>ШАГ 1</div>
-                <h4 className="text-2xl font-bold mb-3">Установить Garry's Mod</h4>
+                <h4 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                  Установить Garry's Mod
+                  <Icon name="ExternalLink" size={20} className="text-primary" />
+                </h4>
                 <p className="text-base leading-relaxed opacity-80">
                   Установите Garry's Mod через Steam. Если игры нет в вашей библиотеке, потребуется её приобрести.
                 </p>
@@ -339,11 +349,15 @@ const Index = () => {
                 }`}
                 style={{ animationDelay: '0.4s' }}
                 onMouseEnter={() => setHoveredPlayStep(2)}
+                onClick={() => window.open('https://steamcommunity.com/sharedfiles/filedetails/?id=YOUR_COLLECTION_ID', '_blank')}
               >
                 <div className={`text-sm tracking-wider mb-3 font-bold transition-colors duration-300 ${
                   hoveredPlayStep === 2 ? 'text-primary' : 'text-muted-foreground'
                 }`}>ШАГ 2</div>
-                <h4 className="text-2xl font-bold mb-3">Установить контент сервера</h4>
+                <h4 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                  Установить контент сервера
+                  <Icon name="ExternalLink" size={20} className="text-primary" />
+                </h4>
                 <p className="text-base leading-relaxed opacity-80">
                   Перейдите в нашу Steam Workshop Collection и подпишитесь на необходимые файлы
                 </p>
