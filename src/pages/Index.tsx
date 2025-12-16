@@ -113,8 +113,8 @@ const Index = () => {
 
   const getAboutImage = () => {
     if (hoveredTab === 1) return 'https://cdn.poehali.dev/files/bgsite.png';
-    if (hoveredTab === 2) return 'https://cdn.poehali.dev/files/bgsite2.png';
-    if (hoveredTab === 3) return 'https://cdn.poehali.dev/files/14d2838e-a9a1-4442-af1c-70d449c6dec1.png';
+    if (hoveredTab === 2) return 'https://i.imgur.com/naKCHlU.png';
+    if (hoveredTab === 3) return 'https://i.imgur.com/zcrXkEs.png';
     return 'https://cdn.poehali.dev/files/bgsite.png';
   };
 
