@@ -112,10 +112,10 @@ const Index = () => {
   ];
 
   const getAboutImage = () => {
-    if (hoveredTab === 1) return 'https://cdn.poehali.dev/files/bgsite.png';
+    if (hoveredTab === 1) return 'https://i.imgur.com/7UJtih9.png';
     if (hoveredTab === 2) return 'https://i.imgur.com/naKCHlU.png';
     if (hoveredTab === 3) return 'https://i.imgur.com/zcrXkEs.png';
-    return 'https://cdn.poehali.dev/files/bgsite.png';
+    return 'https://i.imgur.com/7UJtih9.png';
   };
 
   return (
@@ -150,6 +150,9 @@ const Index = () => {
             </a>
             <a href="#team" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'team' ? 'active' : ''}`}>
               Команда
+            </a>
+            <a href="/donate" className="nav-link hover:text-primary transition-colors tracking-wide">
+              Донат
             </a>
           </nav>
           <div className="flex gap-4">

@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Get player balance",
+      "method": "GET",
+      "path": "/?steam_id=STEAM_0:1:12345678",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "steam_id": "string",
+        "balance": "number",
+        "total_donated": "number"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Claim balance",
+      "method": "POST",
+      "path": "/?steam_id=STEAM_0:1:12345678",
+      "body": {
+        "action": "claim"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "claimed": "number"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
