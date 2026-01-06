@@ -10,7 +10,6 @@ const Donate = () => {
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [activeTab, setActiveTab] = useState('donate');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -44,11 +43,32 @@ const Donate = () => {
     }
 
     setLoading(true);
-    toast({
-      title: 'Информация',
-      description: 'Оплата временно недоступна',
-    });
-    setLoading(false);
+    try {
+      const response = await fetch('https://functions.poehali.dev/82e4a93c-2575-4ee2-8cc3-dbdc6931e07f', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          steam_id: steamId,
+          amount: customAmount,
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (data.payment_url) {
+        window.location.href = data.payment_url;
+      } else {
+        throw new Error('Не удалось создать платёж');
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось создать платёж. Попробуйте позже.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -86,294 +106,220 @@ const Donate = () => {
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
       <div 
-        className="pointer-events-none fixed inset-0 z-50 transition-opacity duration-300"
+        className="fixed pointer-events-none z-0 rounded-full blur-3xl transition-opacity duration-300"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(14, 165, 233, 0.15), transparent 40%)`,
+          left: `${mousePos.x}px`,
+          top: `${mousePos.y}px`,
+          width: '400px',
+          height: '400px',
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(circle, rgba(29, 185, 84, 0.2) 0%, transparent 70%)',
         }}
-      />
+      ></div>
 
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#051510]/90 backdrop-blur-sm border-b border-primary/20">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img src="https://cdn.poehali.dev/files/4468007d-3ca2-4d75-af22-bd7b04f04385.png" alt="Abyssal" className="w-10 h-10" />
             <h1 className="text-xl font-bold tracking-wider">ABYSSAL</h1>
-          </div>
-          <nav className="flex gap-8 text-sm">
-            <a href="/" className="nav-link hover:text-primary transition-colors tracking-wide">
-              Главная
-            </a>
-          </nav>
+          </a>
+          <Button 
+            onClick={() => window.history.back()}
+            className="bg-primary/10 text-primary border-2 border-primary hover:bg-primary hover:text-black transition-all duration-300 px-6 flex items-center gap-2 group"
+          >
+            <Icon name="ArrowLeft" size={18} className="group-hover:-translate-x-1 transition-transform duration-300" />
+            Вернуться
+          </Button>
         </div>
       </header>
 
       <main className="relative z-10 pt-32 pb-20">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-5xl font-bold mb-4 tracking-wide">ДОНАТ</h1>
-            <p className="text-lg opacity-80">Пополните баланс для покупки привилегий на сервере</p>
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <h1 className="text-6xl font-bold mb-6 tracking-wide">
+              ПОПОЛНЕНИЕ <span className="text-primary">БАЛАНСА</span>
+            </h1>
+            <p className="text-xl opacity-80 max-w-2xl mx-auto">
+              Поддержите развитие проекта и получите донат-валюту для улучшения игрового опыта
+            </p>
+            <div className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-primary/10 border border-primary/30 rounded-full">
+              <Icon name="TrendingUp" size={20} className="text-primary" />
+              <span className="text-sm font-bold">Курс: 1₽ = 1 донат-валюта</span>
+            </div>
           </div>
 
-          <div className="flex gap-2 mb-8 border-b border-primary/20 flex-wrap">
-            <button
-              onClick={() => setActiveTab('donate')}
-              className={`px-6 py-3 font-medium transition-all ${
-                activeTab === 'donate'
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              <Icon name="CreditCard" className="inline mr-2" size={16} />
-              Пополнение
-            </button>
-            <button
-              onClick={() => setActiveTab('info')}
-              className={`px-6 py-3 font-medium transition-all ${
-                activeTab === 'info'
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              <Icon name="Info" className="inline mr-2" size={16} />
-              Информация
-            </button>
-            <button
-              onClick={() => setActiveTab('rules')}
-              className={`px-6 py-3 font-medium transition-all ${
-                activeTab === 'rules'
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              <Icon name="FileText" className="inline mr-2" size={16} />
-              Правила
-            </button>
-            <button
-              onClick={() => setActiveTab('faq')}
-              className={`px-6 py-3 font-medium transition-all ${
-                activeTab === 'faq'
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              <Icon name="HelpCircle" className="inline mr-2" size={16} />
-              FAQ
-            </button>
-          </div>
+          <div className="max-w-6xl mx-auto mb-16 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="relative animate-fade-in order-2 lg:order-1">
+                <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+                <img 
+                  src="https://cdn.poehali.dev/files/bgsite.png" 
+                  alt="Abyssal Hero" 
+                  className="relative w-full h-auto shadow-2xl shadow-primary/30 animate-float"
+                />
+              </div>
 
-          {activeTab === 'donate' && (
-            <Card className="p-8 bg-[#0a1f1a]/80 border-primary/30 backdrop-blur-sm animate-fade-in">
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-primary">
-                    <Icon name="User" className="inline mr-2" size={16} />
-                    Steam ID
-                  </label>
-                  <Input
-                    type="text"
-                    placeholder="76561198000000000"
-                    value={steamId}
-                    onChange={(e) => setSteamId(e.target.value)}
-                    className="bg-[#051510] border-primary/30 focus:border-primary text-white placeholder:text-white/40"
-                  />
-                  <p className="text-xs opacity-60 mt-2">Введите ваш Steam ID64</p>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-primary">
-                    <Icon name="Coins" className="inline mr-2" size={16} />
-                    Сумма пополнения
-                  </label>
-                  <Input
-                    type="number"
-                    placeholder="Введите сумму"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    className="bg-[#051510] border-primary/30 focus:border-primary text-white placeholder:text-white/40"
-                    min="100"
-                  />
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {quickAmounts.map((amt) => (
-                      <Button
-                        key={amt}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setAmount(amt.toString())}
-                        className="border-primary/30 hover:bg-primary hover:text-black transition-all"
-                      >
-                        {amt} ₽
-                      </Button>
-                    ))}
+              <Card className="p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 relative overflow-hidden rounded-3xl order-1 lg:order-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+                <div className="relative space-y-6">
+                  <div>
+                    <label className="block text-lg font-bold mb-3 tracking-wide flex items-center gap-2">
+                      <Icon name="User" size={20} className="text-primary" />
+                      ВАШ STEAM ID
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="STEAM_0:1:12345678"
+                      value={steamId}
+                      onChange={(e) => setSteamId(e.target.value)}
+                      className="bg-background/70 border-2 border-primary/30 focus:border-primary text-white text-lg h-14 transition-all duration-300 rounded-xl"
+                    />
+                    <p className="text-xs opacity-60 mt-2 flex items-center gap-2">
+                      <Icon name="Info" size={14} />
+                      Найти свой Steam ID:{' '}
+                      <a href="https://steamid.io/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">
+                        steamid.io
+                      </a>
+                    </p>
                   </div>
+
+                  <div>
+                    <label className="block text-lg font-bold mb-3 tracking-wide flex items-center gap-2">
+                      <Icon name="Wallet" size={20} className="text-primary" />
+                      ВВЕДИТЕ СУММУ
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Минимум 100 ₽"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      className="bg-background/70 border-2 border-primary/30 focus:border-primary text-white text-lg h-14 transition-all duration-300 rounded-xl"
+                      min="100"
+                    />
+                    
+                    <div className="grid grid-cols-5 gap-2 mt-4">
+                      {quickAmounts.map((sum) => (
+                        <button
+                          key={sum}
+                          onClick={() => setAmount(sum.toString())}
+                          className="px-3 py-2 bg-background/70 border-2 border-primary/30 rounded-xl text-sm font-bold hover:border-primary hover:bg-primary/10 transition-all duration-300 group relative overflow-hidden"
+                        >
+                          <span className="absolute inset-0 bg-primary/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-xl"></span>
+                          <span className="relative">{sum}₽</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Button
+                    onClick={handleDonate}
+                    disabled={loading}
+                    className="w-full bg-primary text-black hover:bg-primary/90 font-bold text-lg h-14 transition-all duration-300 flex items-center justify-center gap-3 group relative overflow-hidden border-2 border-primary rounded-xl"
+                  >
+                    <span className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-xl"></span>
+                    <Icon name={loading ? "Loader2" : "CreditCard"} size={20} className={loading ? "animate-spin" : "group-hover:scale-110 transition-transform"} />
+                    <span className="relative">{loading ? 'ОБРАБОТКА...' : 'ПОПОЛНИТЬ'}</span>
+                  </Button>
                 </div>
+              </Card>
+            </div>
+          </div>
 
-                <Button
-                  className="w-full bg-primary hover:bg-primary/90 text-black font-bold py-6 text-lg transition-all"
-                  onClick={handleDonate}
-                  disabled={loading}
-                >
-                  <Icon name="CreditCard" className="mr-2" size={20} />
-                  {loading ? 'Обработка...' : 'Оплата временно недоступна'}
-                </Button>
-
-                <div className="text-center text-sm opacity-60 pt-4">
-                  <p>Минимальная сумма: 100 ₽</p>
-                  <p className="mt-2">При возникновении проблем обращайтесь в Discord</p>
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <Card className="p-8 bg-card/30 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 rounded-xl">
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <Icon name="Shield" size={28} className="text-primary" />
                 </div>
-              </div>
-            </Card>
-          )}
-
-          {activeTab === 'info' && (
-            <Card className="p-8 bg-[#0a1f1a]/80 border-primary/30 backdrop-blur-sm animate-fade-in">
-              <div className="space-y-6 text-white/90">
                 <div>
-                  <h3 className="text-xl font-bold text-primary mb-4 flex items-center">
-                    <Icon name="Info" className="mr-2" size={20} />
-                    Общая информация
-                  </h3>
-                  <p className="leading-relaxed">
-                    Донат на сервере Abyssal позволяет вам получить игровую валюту, которую можно использовать для покупки привилегий, уникальных предметов и улучшений для вашего персонажа.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold text-primary mb-4 flex items-center">
-                    <Icon name="Package" className="mr-2" size={20} />
-                    Что можно купить
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <Icon name="Check" className="mr-2 mt-1 text-primary flex-shrink-0" size={16} />
-                      <span>VIP привилегии с дополнительными возможностями</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="Check" className="mr-2 mt-1 text-primary flex-shrink-0" size={16} />
-                      <span>Уникальное снаряжение и оружие</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="Check" className="mr-2 mt-1 text-primary flex-shrink-0" size={16} />
-                      <span>Косметические предметы и раскраски</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="Check" className="mr-2 mt-1 text-primary flex-shrink-0" size={16} />
-                      <span>Ускорители прогресса</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold text-primary mb-4 flex items-center">
-                    <Icon name="Shield" className="mr-2" size={20} />
-                    Безопасность платежей
-                  </h3>
-                  <p className="leading-relaxed">
-                    Все платежи проходят через защищенные платежные системы. Мы не храним данные ваших банковских карт. Ваша информация надежно защищена.
+                  <h3 className="text-xl font-bold mb-2">Безопасно</h3>
+                  <p className="text-sm opacity-70 leading-relaxed">
+                    Оплата через надёжные кассы
                   </p>
                 </div>
               </div>
             </Card>
-          )}
 
-          {activeTab === 'rules' && (
-            <Card className="p-8 bg-[#0a1f1a]/80 border-primary/30 backdrop-blur-sm animate-fade-in">
-              <div className="space-y-6 text-white/90">
-                <div>
-                  <h3 className="text-xl font-bold text-primary mb-4 flex items-center">
-                    <Icon name="AlertTriangle" className="mr-2" size={20} />
-                    Важные правила
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <Icon name="X" className="mr-2 mt-1 text-red-400 flex-shrink-0" size={16} />
-                      <span>Возврат средств возможен только в случае технической ошибки на нашей стороне</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="X" className="mr-2 mt-1 text-red-400 flex-shrink-0" size={16} />
-                      <span>Игровая валюта и предметы не подлежат обмену на реальные деньги</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="X" className="mr-2 mt-1 text-red-400 flex-shrink-0" size={16} />
-                      <span>При нарушении правил сервера аккаунт может быть заблокирован без возврата средств</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="X" className="mr-2 mt-1 text-red-400 flex-shrink-0" size={16} />
-                      <span>Передача аккаунта третьим лицам запрещена</span>
-                    </li>
-                  </ul>
+            <Card className="p-8 bg-card/30 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 rounded-xl">
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <Icon name="Zap" size={28} className="text-primary" />
                 </div>
-
                 <div>
-                  <h3 className="text-xl font-bold text-primary mb-4 flex items-center">
-                    <Icon name="CheckCircle" className="mr-2" size={20} />
-                    Правила использования
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <Icon name="Check" className="mr-2 mt-1 text-primary flex-shrink-0" size={16} />
-                      <span>Игровая валюта зачисляется автоматически после успешной оплаты</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="Check" className="mr-2 mt-1 text-primary flex-shrink-0" size={16} />
-                      <span>Срок зачисления: от нескольких секунд до 15 минут</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Icon name="Check" className="mr-2 mt-1 text-primary flex-shrink-0" size={16} />
-                      <span>При возникновении проблем обращайтесь в поддержку с номером транзакции</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Card>
-          )}
-
-          {activeTab === 'faq' && (
-            <Card className="p-8 bg-[#0a1f1a]/80 border-primary/30 backdrop-blur-sm animate-fade-in">
-              <div className="space-y-6 text-white/90">
-                <div>
-                  <h4 className="text-lg font-bold text-primary mb-2">Как узнать свой Steam ID?</h4>
-                  <p className="leading-relaxed opacity-80">
-                    Зайдите на сайт <a href="https://steamid.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">steamid.io</a>, введите ссылку на свой профиль Steam и скопируйте значение steamID64.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-bold text-primary mb-2">Как быстро зачисляются средства?</h4>
-                  <p className="leading-relaxed opacity-80">
-                    Обычно средства зачисляются мгновенно после успешной оплаты. В редких случаях это может занять до 15 минут.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-bold text-primary mb-2">Можно ли вернуть деньги?</h4>
-                  <p className="leading-relaxed opacity-80">
-                    Возврат средств возможен только при технической ошибке на нашей стороне (например, средства списаны, но не зачислены). Обратитесь в поддержку с подтверждением платежа.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-bold text-primary mb-2">Какие способы оплаты доступны?</h4>
-                  <p className="leading-relaxed opacity-80">
-                    Мы принимаем банковские карты (Visa, Mastercard, МИР), электронные кошельки и другие популярные способы оплаты через защищенные платежные системы.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-bold text-primary mb-2">Что делать, если деньги списались, но не пришли?</h4>
-                  <p className="leading-relaxed opacity-80">
-                    Напишите в поддержку Discord с указанием вашего Steam ID и скриншотом/чеком об оплате. Мы решим проблему в течение 24 часов.
+                  <h3 className="text-xl font-bold mb-2">Мгновенно</h3>
+                  <p className="text-sm opacity-70 leading-relaxed">
+                    Зачисление до двух минут
                   </p>
                 </div>
               </div>
             </Card>
-          )}
+          </div>
 
-          <div className="mt-8 text-center text-sm opacity-60 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <p>Принимая оферту, вы соглашаетесь с <a href="/terms" className="text-primary hover:underline">правилами сервиса</a></p>
-            <p className="mt-2">Самозанятый: Шахмуратов Арсен Артурович</p>
-            <p>ИНН: 774313076432</p>
+          <div className="max-w-4xl mx-auto text-center space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="flex items-center justify-center gap-6 text-sm opacity-60">
+              <a href="/privacy" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
+                <Icon name="FileText" size={16} />
+                Политика конфиденциальности
+              </a>
+              <a href="/refund" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
+                <Icon name="RefreshCcw" size={16} />
+                Политика возврата
+              </a>
+              <a href="/services" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
+                <Icon name="Package" size={16} />
+                Услуги
+              </a>
+            </div>
           </div>
         </div>
       </main>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.8s ease-out forwards;
+          opacity: 0;
+        }
+        .bubble {
+          position: fixed;
+          bottom: -100px;
+          background: radial-gradient(circle at 30% 30%, rgba(29, 185, 84, 0.3), rgba(29, 185, 84, 0.05));
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 1;
+          animation: rise linear infinite;
+          opacity: 0.6;
+          box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
+        }
+        @keyframes rise {
+          0% {
+            bottom: -100px;
+            opacity: 0;
+            transform: translateX(0) scale(1);
+          }
+          10% {
+            opacity: 0.6;
+          }
+          90% {
+            opacity: 0.6;
+          }
+          100% {
+            bottom: 100vh;
+            opacity: 0;
+            transform: translateX(50px) scale(1.2);
+          }
+        }
+      `}</style>
     </div>
   );
 };
