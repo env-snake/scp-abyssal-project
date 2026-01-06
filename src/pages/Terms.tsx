@@ -13,6 +13,9 @@ const Terms = () => {
             <a href="/" className="nav-link hover:text-primary transition-colors tracking-wide">
               Главная
             </a>
+            <a href="/donate" className="nav-link hover:text-primary transition-colors tracking-wide">
+              Донат
+            </a>
           </nav>
         </div>
       </header>
@@ -31,11 +34,8 @@ const Terms = () => {
                 Настоящий договор является публичной офертой в соответствии со статьей 437 Гражданского кодекса Российской Федерации.
               </p>
               <p className="mt-4">
-                <strong>Исполнитель:</strong> ИП Киселев Николай Александрович<br />
-                <strong>ОГРНИП:</strong> 324784700201111<br />
-                <strong>ИНН:</strong> 784105099308<br />
-                <strong>Дата регистрации:</strong> 21 июня 2024 г.<br />
-                <strong>Регистратор:</strong> Межрайонная инспекция Федеральной налоговой службы №15 по Санкт-Петербургу
+                <strong>Исполнитель:</strong> Самозанятый Шахмуратов Арсен Артурович<br />
+                <strong>ИНН:</strong> 774313076432
               </p>
             </section>
 

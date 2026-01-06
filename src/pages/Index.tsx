@@ -161,6 +161,14 @@ const Index = () => {
               Команда
             </a>
           </nav>
+          <div className="flex gap-4">
+            <Button 
+              className="bg-primary/10 text-primary border-2 border-primary hover:bg-primary hover:text-black transition-all duration-300 px-6"
+              onClick={() => window.location.href = '/donate'}
+            >
+              Донат
+            </Button>
+          </div>
         </div>
       </header>
 
