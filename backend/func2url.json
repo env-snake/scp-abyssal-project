@@ -1,7 +1,4 @@
 {
-  "donate": "https://functions.poehali.dev/d3c72282-abcb-467d-bd45-f2c3c1860323",
   "robokassa-robokassa-webhook": "https://functions.poehali.dev/37fc62b0-3c74-4fca-b5b3-5b4419cd413f",
-  "robokassa-robokassa": "https://functions.poehali.dev/4e9b4908-480f-4530-8e9e-b5cc9e7ed34b",
-  "donate-webhook": "https://functions.poehali.dev/cd2c33a3-ddca-4ee9-b526-82a31e69efcc",
-  "donate-balance": "https://functions.poehali.dev/242de14c-6560-4cc4-a521-4f5e92def025"
+  "robokassa-robokassa": "https://functions.poehali.dev/4e9b4908-480f-4530-8e9e-b5cc9e7ed34b"
 }

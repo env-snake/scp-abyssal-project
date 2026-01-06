@@ -13,9 +13,6 @@ const Terms = () => {
             <a href="/" className="nav-link hover:text-primary transition-colors tracking-wide">
               Главная
             </a>
-            <a href="/donate" className="nav-link hover:text-primary transition-colors tracking-wide">
-              Донат
-            </a>
           </nav>
         </div>
       </header>
