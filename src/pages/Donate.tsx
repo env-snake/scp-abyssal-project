@@ -113,7 +113,7 @@ const Donate = () => {
             <p className="text-lg opacity-80">Пополните баланс для покупки привилегий на сервере</p>
           </div>
 
-          <div className="flex gap-2 mb-8 border-b border-primary/20">
+          <div className="flex gap-2 mb-8 border-b border-primary/20 flex-wrap">
             <button
               onClick={() => setActiveTab('donate')}
               className={`px-6 py-3 font-medium transition-all ${
