@@ -10,7 +10,17 @@ const Donate = () => {
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [activeTab, setActiveTab] = useState('donate');
   const { toast } = useToast();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlSteamId = urlParams.get('steam_id');
+    const urlAmount = urlParams.get('amount');
+    
+    if (urlSteamId) setSteamId(urlSteamId);
+    if (urlAmount) setAmount(urlAmount);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -44,12 +54,13 @@ const Donate = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('https://functions.poehali.dev/82e4a93c-2575-4ee2-8cc3-dbdc6931e07f', {
+      const response = await fetch('https://functions.poehali.dev/5af93bd2-a1ec-4d87-af66-f2bc997d7791', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           steam_id: steamId,
           amount: customAmount,
+          return_url: window.location.origin + '/donate?success=true'
         }),
       });
 
@@ -58,12 +69,12 @@ const Donate = () => {
       if (data.payment_url) {
         window.location.href = data.payment_url;
       } else {
-        throw new Error('Не удалось создать платёж');
+        throw new Error(data.error || 'Не удалось создать платёж');
       }
     } catch (error) {
       toast({
         title: 'Ошибка',
-        description: 'Не удалось создать платёж. Попробуйте позже.',
+        description: error instanceof Error ? error.message : 'Не удалось создать платёж. Попробуйте позже.',
         variant: 'destructive',
       });
     } finally {
@@ -218,8 +229,12 @@ const Donate = () => {
                   >
                     <span className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-xl"></span>
                     <Icon name={loading ? "Loader2" : "CreditCard"} size={20} className={loading ? "animate-spin" : "group-hover:scale-110 transition-transform"} />
-                    <span className="relative">{loading ? 'ОБРАБОТКА...' : 'ПОПОЛНИТЬ'}</span>
+                    <span className="relative">{loading ? 'ОБРАБОТКА...' : 'ПЕРЕЙТИ К ОПЛАТЕ'}</span>
                   </Button>
+                  
+                  <p className="text-xs text-center opacity-60 mt-4">
+                    После нажатия кнопки вы будете перенаправлены на страницу оплаты ЮKassa
+                  </p>
                 </div>
               </Card>
             </div>
