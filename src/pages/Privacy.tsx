@@ -41,9 +41,8 @@ const Privacy = () => {
               </p>
               <p className="text-sm opacity-80 leading-relaxed mt-4">
                 <strong>Оператор персональных данных:</strong><br />
-                ИП Киселев Николай Александрович<br />
-                ОГРНИП: 324784700201111<br />
-                ИНН: 784105099308
+                Самозанятый Шахмуратов Арсен Артурович<br />
+                ИНН: 774313076432
               </p>
             </section>
 
@@ -126,7 +125,7 @@ const Privacy = () => {
             </section>
 
             <div className="pt-6 border-t border-primary/20 text-center">
-              <p className="text-sm opacity-60">Дата последнего обновления: 16 декабря 2025 года</p>
+              <p className="text-sm opacity-60">Дата последнего обновления: 7 января 2026 года</p>
               <p className="text-sm opacity-60 mt-2">Политика действует бессрочно до замены её новой версией</p>
             </div>
           </Card>
