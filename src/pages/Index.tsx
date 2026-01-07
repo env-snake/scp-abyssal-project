@@ -8,14 +8,17 @@ const Index = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredTab, setHoveredTab] = useState<number>(1);
   const [autoScrollTab, setAutoScrollTab] = useState<number>(1);
+  const [isHoveringTabs, setIsHoveringTabs] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setAutoScrollTab((prev) => (prev >= 3 ? 1 : prev + 1));
-      setHoveredTab((prev) => (prev >= 3 ? 1 : prev + 1));
+      if (!isHoveringTabs) {
+        setAutoScrollTab((prev) => (prev >= 3 ? 1 : prev + 1));
+        setHoveredTab((prev) => (prev >= 3 ? 1 : prev + 1));
+      }
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isHoveringTabs]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -204,7 +207,7 @@ const Index = () => {
                   <h3 className="text-4xl font-bold tracking-wide">О ПРОЕКТЕ</h3>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-6" onMouseEnter={() => setIsHoveringTabs(true)} onMouseLeave={() => setIsHoveringTabs(false)}>
                   <div 
                     className={`info-bar-grid border-l-2 pl-4 py-4 animate-fade-in cursor-pointer relative overflow-hidden ${
                       hoveredTab === 1 ? 'border-primary' : 'border-white/20 hover:border-primary'
@@ -421,7 +424,7 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer">
+              <Card className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer relative overflow-hidden">
                 <Icon name="Gamepad2" size={48} className="text-primary mx-auto mb-4 transition-all duration-500" />
                 <h4 className="text-2xl font-bold mb-4">Подключиться</h4>
                 <p className="text-sm opacity-80 mb-6">
@@ -434,7 +437,7 @@ const Index = () => {
                 </Button>
               </Card>
 
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer" style={{ animationDelay: '0.1s' }}>
+              <Card className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer relative overflow-hidden" style={{ animationDelay: '0.1s' }}>
                 <Icon name="FileText" size={48} className="text-primary mx-auto mb-4 transition-all duration-500" />
                 <h4 className="text-2xl font-bold mb-4">Правила сервера</h4>
                 <p className="text-sm opacity-80 mb-6">
@@ -448,7 +451,7 @@ const Index = () => {
                 </Button>
               </Card>
 
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer" style={{ animationDelay: '0.2s' }}>
+              <Card className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer relative overflow-hidden" style={{ animationDelay: '0.2s' }}>
                 <Icon name="MessageCircle" size={48} className="text-primary mx-auto mb-4 transition-all duration-500" />
                 <h4 className="text-2xl font-bold mb-4">Discord сообщество</h4>
                 <p className="text-sm opacity-80 mb-6">
@@ -469,7 +472,7 @@ const Index = () => {
       <footer className="border-t border-primary/20 py-8 relative z-10 bg-[#051510]/90 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col md:flex-row items-center gap-4">
+            <div className="flex flex-col items-center md:items-start gap-2">
               <div className="flex items-center gap-3">
                 <img src="https://cdn.poehali.dev/files/4468007d-3ca2-4d75-af22-bd7b04f04385.png" alt="Abyssal" className="w-8 h-8" />
                 <span className="text-sm tracking-wider opacity-80">© 2025 ABYSSAL. Все права защищены</span>

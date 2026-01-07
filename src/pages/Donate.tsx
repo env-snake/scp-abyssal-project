@@ -161,12 +161,12 @@ const Donate = () => {
 
           <div className="max-w-6xl mx-auto mb-16 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div className="relative animate-fade-in order-2 lg:order-1">
+              <div className="relative animate-fade-in order-2 lg:order-1 flex justify-center">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
                 <img 
                   src="https://cdn.poehali.dev/files/bgsite.png" 
                   alt="Abyssal Hero" 
-                  className="relative w-full h-auto shadow-2xl shadow-primary/30 animate-float"
+                  className="relative w-4/5 h-auto rounded-full border-4 border-primary/50 shadow-2xl shadow-primary/30 animate-float object-cover aspect-square"
                 />
               </div>
 
@@ -272,8 +272,12 @@ const Donate = () => {
 
           <div className="max-w-4xl mx-auto text-center space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <div className="flex items-center justify-center gap-6 text-sm opacity-60">
-              <a href="/privacy" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
+              <a href="/terms" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
                 <Icon name="FileText" size={16} />
+                Оферта
+              </a>
+              <a href="/privacy" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
+                <Icon name="Shield" size={16} />
                 Политика конфиденциальности
               </a>
               <a href="/refund" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
