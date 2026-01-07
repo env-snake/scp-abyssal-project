@@ -162,7 +162,7 @@ const Donate = () => {
           <div className="max-w-6xl mx-auto mb-16 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div className="relative animate-fade-in order-2 lg:order-1 flex justify-center">
-                <div className="relative w-full max-w-md">
+                <div className="relative w-full max-w-xl">
                   <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
                   <img 
                     src="https://cdn.poehali.dev/files/bgsite.png" 

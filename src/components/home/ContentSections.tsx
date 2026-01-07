@@ -121,7 +121,7 @@ const ContentSections = ({ hoveredTab, setHoveredTab, setIsHoveringTabs }: Conte
             </div>
 
             <div className="animate-fade-in relative flex justify-center" style={{ animationDelay: '0.8s' }}>
-              <div className="relative w-full max-w-lg">
+              <div className="relative w-full max-w-xl">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
                 <img
                   key={hoveredTab}
