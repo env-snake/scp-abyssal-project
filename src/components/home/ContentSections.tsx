@@ -121,13 +121,13 @@ const ContentSections = ({ hoveredTab, setHoveredTab, setIsHoveringTabs }: Conte
             </div>
 
             <div className="animate-fade-in relative flex justify-center" style={{ animationDelay: '0.8s' }}>
-              <div className="relative">
+              <div className="relative w-full max-w-lg">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
                 <img
                   key={hoveredTab}
                   src={getAboutImage()}
                   alt="Станция 119"
-                  className="relative w-4/5 h-auto rounded-full border-4 border-primary/50 shadow-2xl shadow-primary/30 transition-opacity duration-500 ease-in-out object-cover aspect-square mx-auto"
+                  className="relative w-full h-auto rounded-full border-4 border-primary/50 shadow-2xl shadow-primary/30 transition-opacity duration-500 ease-in-out object-cover aspect-square"
                   style={{ animation: 'fadeInImage 0.5s ease-in-out' }}
                 />
               </div>

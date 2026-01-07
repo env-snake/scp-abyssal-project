@@ -162,12 +162,14 @@ const Donate = () => {
           <div className="max-w-6xl mx-auto mb-16 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div className="relative animate-fade-in order-2 lg:order-1 flex justify-center">
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
-                <img 
-                  src="https://cdn.poehali.dev/files/bgsite.png" 
-                  alt="Abyssal Hero" 
-                  className="relative w-4/5 h-auto rounded-full border-4 border-primary/50 shadow-2xl shadow-primary/30 animate-float object-cover aspect-square"
-                />
+                <div className="relative w-full max-w-md">
+                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+                  <img 
+                    src="https://cdn.poehali.dev/files/bgsite.png" 
+                    alt="Abyssal Hero" 
+                    className="relative w-full h-auto rounded-full border-4 border-primary/50 shadow-2xl shadow-primary/30 animate-float object-cover aspect-square"
+                  />
+                </div>
               </div>
 
               <Card className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 relative overflow-hidden rounded-3xl order-1 lg:order-2">
