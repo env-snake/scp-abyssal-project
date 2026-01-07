@@ -58,8 +58,9 @@ const Index = () => {
       bubble.style.width = `${size}px`;
       bubble.style.height = `${size}px`;
       bubble.style.left = `${Math.random() * 100}%`;
-      bubble.style.animationDuration = `${Math.random() * 10 + 15}s`;
-      bubble.style.animationDelay = `${Math.random() * 5}s`;
+      const duration = Math.random() * 10 + 15;
+      bubble.style.animationDuration = `${duration}s`;
+      bubble.style.animationDelay = '0s';
       document.body.appendChild(bubble);
       bubbles.push(bubble);
 
@@ -67,7 +68,7 @@ const Index = () => {
         bubble.remove();
         const index = bubbles.indexOf(bubble);
         if (index > -1) bubbles.splice(index, 1);
-      }, (Math.random() * 10 + 15) * 1000);
+      }, duration * 1000);
     };
 
     const interval = setInterval(createBubble, 2000);
@@ -352,7 +353,7 @@ const Index = () => {
                 }`}
                 style={{ animationDelay: '0.4s' }}
                 onMouseEnter={() => setHoveredPlayStep(2)}
-                onClick={() => window.open('https://steamcommunity.com/sharedfiles/filedetails/?id=YOUR_COLLECTION_ID', '_blank')}
+                onClick={() => window.open('https://steamcommunity.com/sharedfiles/filedetails/?id=3361006309', '_blank')}
               >
                 <div className={`text-sm tracking-wider mb-3 font-bold transition-colors duration-300 ${
                   hoveredPlayStep === 2 ? 'text-primary' : 'text-muted-foreground'
@@ -372,11 +373,15 @@ const Index = () => {
                 }`}
                 style={{ animationDelay: '0.6s' }}
                 onMouseEnter={() => setHoveredPlayStep(3)}
+                onClick={() => window.location.href = 'steam://connect/212.22.85.156:25565'}
               >
                 <div className={`text-sm tracking-wider mb-3 font-bold transition-colors duration-300 ${
                   hoveredPlayStep === 3 ? 'text-primary' : 'text-muted-foreground'
                 }`}>ШАГ 3</div>
-                <h4 className="text-2xl font-bold mb-3">Зайдите на сервер</h4>
+                <h4 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                  Зайдите на сервер
+                  <Icon name="Gamepad2" size={20} className="text-primary" />
+                </h4>
                 <p className="text-base leading-relaxed opacity-80">
                   Дождитесь их загрузки, после чего запустите игру и подключитесь к серверу.
                 </p>
@@ -432,6 +437,7 @@ const Index = () => {
                 </p>
                 <Button 
                   className="bg-primary/10 text-primary border-2 border-primary hover:bg-primary hover:text-black transition-all duration-300"
+                  onClick={() => window.location.href = 'steam://connect/212.22.85.156:25565'}
                 >
                   Играть сейчас
                 </Button>

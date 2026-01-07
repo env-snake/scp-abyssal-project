@@ -148,7 +148,7 @@ const Donate = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-6xl font-bold mb-6 tracking-wide">
-              ПОПОЛНЕНИЕ <span className="text-primary">БАЛАНСА</span>
+              ПОПОЛНЕНИЕ <span className="text-primary animate-gradient-text bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent bg-[length:200%_auto]">БАЛАНСА</span>
             </h1>
             <p className="text-xl opacity-80 max-w-2xl mx-auto">
               Поддержите развитие проекта и получите донат-валюту для улучшения игрового опыта
@@ -170,7 +170,7 @@ const Donate = () => {
                 />
               </div>
 
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 relative overflow-hidden rounded-3xl order-1 lg:order-2">
+              <Card className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 relative overflow-hidden rounded-3xl order-1 lg:order-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
                 <div className="relative space-y-6">
                   <div>
@@ -241,7 +241,7 @@ const Donate = () => {
           </div>
 
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <Card className="p-8 bg-card/30 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 rounded-xl">
+            <Card className="info-bar-grid p-8 bg-card/30 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 rounded-xl relative overflow-hidden">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <Icon name="Shield" size={28} className="text-primary" />
@@ -255,7 +255,7 @@ const Donate = () => {
               </div>
             </Card>
 
-            <Card className="p-8 bg-card/30 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 rounded-xl">
+            <Card className="info-bar-grid p-8 bg-card/30 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 rounded-xl relative overflow-hidden">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <Icon name="Zap" size={28} className="text-primary" />
@@ -308,6 +308,14 @@ const Donate = () => {
         .animate-fade-in {
           animation: fade-in 0.8s ease-out forwards;
           opacity: 0;
+        }
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-text {
+          animation: gradient-shift 3s ease infinite;
         }
         .bubble {
           position: fixed;
