@@ -120,14 +120,17 @@ const ContentSections = ({ hoveredTab, setHoveredTab, setIsHoveringTabs }: Conte
               </div>
             </div>
 
-            <div className="animate-fade-in relative" style={{ animationDelay: '0.8s' }}>
-              <img
-                key={hoveredTab}
-                src={getAboutImage()}
-                alt="Станция 119"
-                className="w-full h-auto rounded-lg shadow-2xl transition-opacity duration-500 ease-in-out"
-                style={{ animation: 'fadeInImage 0.5s ease-in-out' }}
-              />
+            <div className="animate-fade-in relative flex justify-center" style={{ animationDelay: '0.8s' }}>
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+                <img
+                  key={hoveredTab}
+                  src={getAboutImage()}
+                  alt="Станция 119"
+                  className="relative w-4/5 h-auto rounded-full border-4 border-primary/50 shadow-2xl shadow-primary/30 transition-opacity duration-500 ease-in-out object-cover aspect-square mx-auto"
+                  style={{ animation: 'fadeInImage 0.5s ease-in-out' }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -318,7 +321,7 @@ const ContentSections = ({ hoveredTab, setHoveredTab, setIsHoveringTabs }: Conte
               </Button>
             </Card>
 
-            <Card className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer relative overflow-hidden" style={{ animationDelay: '0.2s' }}>
+            <Card className="info-bar-grid p-8 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary transition-all duration-500 hover:bg-card/70 hover:scale-105 animate-fade-in text-center cursor-pointer relative overflow-hidden flex flex-col items-center" style={{ animationDelay: '0.2s' }}>
               <Icon name="MessageCircle" size={48} className="text-primary mx-auto mb-4 transition-all duration-500" />
               <h4 className="text-2xl font-bold mb-4">Discord сообщество</h4>
               <p className="text-sm opacity-80 mb-6">

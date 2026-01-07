@@ -271,7 +271,7 @@ const Donate = () => {
           </div>
 
           <div className="max-w-4xl mx-auto text-center space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="flex items-center justify-center gap-6 text-sm opacity-60">
+            <div className="flex flex-col items-center justify-center gap-3 text-sm opacity-60">
               <a href="/terms" className="hover:text-primary hover:opacity-100 transition-all duration-300 flex items-center gap-2">
                 <Icon name="FileText" size={16} />
                 Оферта
