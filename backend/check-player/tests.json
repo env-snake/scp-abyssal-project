@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "Check player with valid Steam ID format",
+      "method": "GET",
+      "path": "/?steam_id=STEAM_0:1:12345678",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "found": "boolean"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Check player without Steam ID",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

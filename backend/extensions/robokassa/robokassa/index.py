@@ -57,19 +57,21 @@ def handler(event: dict, context) -> dict:
         payload = json.loads(body_str)
 
         amount = float(payload.get('amount', 0))
-        user_name = str(payload.get('user_name', ''))
-        user_email = str(payload.get('user_email', ''))
+        steam_id = str(payload.get('steam_id', ''))
+        user_name = str(payload.get('user_name', steam_id))
+        user_email = str(payload.get('user_email', 'noreply@abyssalscp.ru'))
         user_phone = str(payload.get('user_phone', ''))
         user_address = str(payload.get('user_address', ''))
         order_comment = str(payload.get('order_comment', ''))
         cart_items = payload.get('cart_items', [])
         success_url = str(payload.get('success_url', ''))
         fail_url = str(payload.get('fail_url', ''))
+        server_ip = '212.22.85.156:25565'
 
         if amount <= 0:
             return {'statusCode': 400, 'headers': HEADERS, 'body': json.dumps({'error': 'Amount must be greater than 0'}), 'isBase64Encoded': False}
-        if not user_name or not user_email:
-            return {'statusCode': 400, 'headers': HEADERS, 'body': json.dumps({'error': 'user_name and user_email required'}), 'isBase64Encoded': False}
+        if not steam_id:
+            return {'statusCode': 400, 'headers': HEADERS, 'body': json.dumps({'error': 'steam_id required'}), 'isBase64Encoded': False}
 
         conn = get_db_connection()
         cur = conn.cursor()
@@ -82,12 +84,13 @@ def handler(event: dict, context) -> dict:
                 break
 
         order_number = f"ORD-{datetime.now().strftime('%Y%m%d')}-{robokassa_inv_id}"
+        game_currency = int(amount)
 
         cur.execute("""
-            INSERT INTO orders (order_number, user_name, user_email, user_phone, amount, robokassa_inv_id, status, delivery_address, order_comment)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO orders (order_number, user_name, user_email, user_phone, amount, robokassa_inv_id, status, delivery_address, order_comment, steam_id, server_ip, game_currency)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
-        """, (order_number, user_name, user_email, user_phone, round(amount, 2), robokassa_inv_id, 'pending', user_address, order_comment))
+        """, (order_number, user_name, user_email, user_phone, round(amount, 2), robokassa_inv_id, 'pending', user_address, order_comment, steam_id, server_ip, game_currency))
 
         order_id = cur.fetchone()[0]
 

@@ -1,1 +1,5 @@
-{}
+{
+  "robokassa-robokassa-webhook": "https://functions.poehali.dev/3f41acf8-b027-4c3c-b069-c707c9459300",
+  "robokassa-robokassa": "https://functions.poehali.dev/21cfb45c-71d6-4ee4-867a-c632a2ca813b",
+  "check-player": "https://functions.poehali.dev/3fb40399-0846-47af-91ab-68e6977dd3f5"
+}

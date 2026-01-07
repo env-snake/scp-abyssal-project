@@ -54,13 +54,27 @@ const Donate = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('https://functions.poehali.dev/5af93bd2-a1ec-4d87-af66-f2bc997d7791', {
+      const checkResponse = await fetch(`https://functions.poehali.dev/3fb40399-0846-47af-91ab-68e6977dd3f5?steam_id=${encodeURIComponent(steamId)}`);
+      const checkData = await checkResponse.json();
+      
+      if (!checkData.found) {
+        toast({
+          title: 'Ошибка',
+          description: 'Игрок с данным Steam ID не найден на сервере. Сначала зайдите на сервер!',
+          variant: 'destructive',
+        });
+        setLoading(false);
+        return;
+      }
+
+      const response = await fetch('https://functions.poehali.dev/21cfb45c-71d6-4ee4-867a-c632a2ca813b', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           steam_id: steamId,
           amount: customAmount,
-          return_url: window.location.origin + '/donate?success=true'
+          success_url: window.location.origin + '/donate?success=true',
+          fail_url: window.location.origin + '/donate?failed=true'
         }),
       });
 
