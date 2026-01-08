@@ -124,9 +124,9 @@ const Index = () => {
       }, duration * 1000);
     };
 
-    const interval = setInterval(createBubble, 2000);
-    for (let i = 0; i < 8; i++) {
-      setTimeout(createBubble, i * 500);
+    const interval = setInterval(createBubble, 1000);
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createBubble, i * 300);
     }
 
     return () => {
