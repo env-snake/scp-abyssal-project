@@ -36,10 +36,21 @@ const Index = () => {
       
       setActiveSection(current || '');
       
-      const scrollY = window.scrollY;
-      const maxScroll = 1200;
-      const opacity = Math.min(scrollY / maxScroll, 1);
-      setScrollOpacity(opacity);
+      const teamSection = document.getElementById('team');
+      if (teamSection) {
+        const teamRect = teamSection.getBoundingClientRect();
+        const teamTop = teamSection.offsetTop;
+        const scrollY = window.scrollY;
+        
+        if (scrollY >= teamTop) {
+          const scrollFromTeam = scrollY - teamTop;
+          const maxScroll = 1200;
+          const opacity = Math.min(scrollFromTeam / maxScroll, 1);
+          setScrollOpacity(opacity);
+        } else {
+          setScrollOpacity(0);
+        }
+      }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
