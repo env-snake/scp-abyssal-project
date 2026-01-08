@@ -11,7 +11,6 @@ const Donate = () => {
   const [loading, setLoading] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState('donate');
-  const [scrollOpacity, setScrollOpacity] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -27,18 +26,8 @@ const Donate = () => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll = 1200;
-      const opacity = Math.min(scrollY / maxScroll, 1);
-      setScrollOpacity(opacity);
-    };
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const quickAmounts = [100, 500, 1000, 2000, 5000];
@@ -116,43 +105,16 @@ const Donate = () => {
       bubble.style.width = `${size}px`;
       bubble.style.height = `${size}px`;
       bubble.style.left = `${Math.random() * 100}%`;
-      const duration = Math.random() * 10 + 15;
-      bubble.style.animationDuration = `${duration}s`;
+      bubble.style.animationDuration = `${Math.random() * 10 + 15}s`;
       bubble.style.animationDelay = `${Math.random() * 5}s`;
-      
-      const updateBubbleColor = () => {
-        const rect = bubble.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const progress = 1 - (rect.top / windowHeight);
-        const colorProgress = Math.max(0, Math.min(1, progress));
-        
-        const greenR = 29, greenG = 185, greenB = 84;
-        const grayR = 60, grayG = 60, grayB = 60;
-        
-        const r = Math.round(greenR + (grayR - greenR) * colorProgress);
-        const g = Math.round(greenG + (grayG - greenG) * colorProgress);
-        const b = Math.round(greenB + (grayB - greenB) * colorProgress);
-        
-        bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(${r}, ${g}, ${b}, 0.3), rgba(${r}, ${g}, ${b}, 0.05))`;
-        bubble.style.boxShadow = `0 0 15px rgba(${r}, ${g}, ${b}, 0.2)`;
-      };
-      
-      const animationFrame = () => {
-        updateBubbleColor();
-        if (document.body.contains(bubble)) {
-          requestAnimationFrame(animationFrame);
-        }
-      };
-      
       document.body.appendChild(bubble);
       bubbles.push(bubble);
-      requestAnimationFrame(animationFrame);
 
       setTimeout(() => {
         bubble.remove();
         const index = bubbles.indexOf(bubble);
         if (index > -1) bubbles.splice(index, 1);
-      }, duration * 1000);
+      }, (Math.random() * 10 + 15) * 1000);
     };
 
     const interval = setInterval(createBubble, 2000);
@@ -167,12 +129,7 @@ const Donate = () => {
   }, []);
 
   return (
-    <div 
-      className="min-h-screen text-white relative overflow-hidden transition-colors duration-700"
-      style={{
-        backgroundColor: `rgb(${Math.round(5 - scrollOpacity * 5)}, ${Math.round(21 - scrollOpacity * 21)}, ${Math.round(16 - scrollOpacity * 16)})`
-      }}
-    >
+    <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
       
       <div 
         className="fixed pointer-events-none z-0 rounded-full blur-3xl transition-opacity duration-300"

@@ -1,8 +1,15 @@
 import Icon from '@/components/ui/icon';
 
-const Footer = () => {
+interface FooterProps {
+  bgColor?: string;
+}
+
+const Footer = ({ bgColor = 'rgba(5, 21, 16, 0.9)' }: FooterProps) => {
   return (
-    <footer className="border-t border-primary/20 py-8 relative z-10 bg-[#051510]/90 backdrop-blur-sm">
+    <footer 
+      className="border-t border-primary/20 py-8 relative z-10 backdrop-blur-sm transition-colors duration-700"
+      style={{ backgroundColor: bgColor }}
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-3">

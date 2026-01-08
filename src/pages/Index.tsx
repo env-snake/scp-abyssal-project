@@ -11,6 +11,7 @@ const Index = () => {
   const [autoScrollTab, setAutoScrollTab] = useState<number>(1);
   const [isHoveringTabs, setIsHoveringTabs] = useState(false);
   const [scrollOpacity, setScrollOpacity] = useState(0);
+  const [footerBgColor, setFooterBgColor] = useState('rgba(5, 21, 16, 0.9)');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,19 +37,24 @@ const Index = () => {
       
       setActiveSection(current || '');
       
-      const teamSection = document.getElementById('team');
-      if (teamSection) {
-        const teamRect = teamSection.getBoundingClientRect();
-        const teamTop = teamSection.offsetTop;
+      const collageSection = document.getElementById('collage');
+      if (collageSection) {
+        const collageTop = collageSection.offsetTop;
         const scrollY = window.scrollY;
         
-        if (scrollY >= teamTop) {
-          const scrollFromTeam = scrollY - teamTop;
+        if (scrollY >= collageTop) {
+          const scrollFromCollage = scrollY - collageTop;
           const maxScroll = 1200;
-          const opacity = Math.min(scrollFromTeam / maxScroll, 1);
+          const opacity = Math.min(scrollFromCollage / maxScroll, 1);
           setScrollOpacity(opacity);
+          
+          const r = Math.round(5 - opacity * 5);
+          const g = Math.round(21 - opacity * 21);
+          const b = Math.round(16 - opacity * 16);
+          setFooterBgColor(`rgba(${r}, ${g}, ${b}, 0.9)`);
         } else {
           setScrollOpacity(0);
+          setFooterBgColor('rgba(5, 21, 16, 0.9)');
         }
       }
     };
@@ -157,7 +163,7 @@ const Index = () => {
         />
       </main>
 
-      <Footer />
+      <Footer bgColor={footerBgColor} />
     </div>
   );
 };
