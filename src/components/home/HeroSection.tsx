@@ -1,28 +1,6 @@
-import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 
 const HeroSection = () => {
-  const [serverStatus, setServerStatus] = useState<{
-    online: boolean;
-    players: number;
-    max_players: number;
-  } | null>(null);
-
-  useEffect(() => {
-    const fetchServerStatus = async () => {
-      try {
-        const response = await fetch('https://functions.poehali.dev/9bf23c83-7d79-48cb-8ab4-50f3eea4d556');
-        const data = await response.json();
-        setServerStatus(data);
-      } catch (error) {
-        setServerStatus({ online: false, players: 0, max_players: 0 });
-      }
-    };
-
-    fetchServerStatus();
-    const interval = setInterval(fetchServerStatus, 60000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="min-h-screen flex items-center justify-center relative pt-20">
@@ -53,19 +31,6 @@ const HeroSection = () => {
               Играть
             </span>
           </button>
-          {serverStatus && (
-            <div className="flex items-center gap-3 px-4 py-2 bg-black/30 backdrop-blur-sm rounded-full border border-primary/30">
-              <div className={`w-2 h-2 rounded-full ${
-                serverStatus.online ? 'bg-green-500 animate-pulse' : 'bg-red-500'
-              }`}></div>
-              <span className="text-sm font-medium">
-                {serverStatus.online 
-                  ? `Игроки онлайн: ${serverStatus.players}/${serverStatus.max_players}`
-                  : 'Сервер оффлайн'
-                }
-              </span>
-            </div>
-          )}
         </div>
         <a href="#about" className="flex justify-center items-center gap-2 animate-bounce cursor-pointer" style={{ animationDelay: '1s' }}>
           <Icon name="ChevronDown" size={20} />
