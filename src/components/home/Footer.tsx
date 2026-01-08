@@ -14,7 +14,7 @@ const Footer = ({ bgColor = 'rgba(5, 21, 16, 0.9)' }: FooterProps) => {
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-3">
             <img src="https://cdn.poehali.dev/files/4468007d-3ca2-4d75-af22-bd7b04f04385.png" alt="Abyssal" className="w-8 h-8" />
-            <span className="text-sm tracking-wider opacity-80">© 2025 ABYSSAL. Все права защищены</span>
+            <span className="text-sm tracking-wider opacity-80">© 2026 ABYSSAL. Все права защищены</span>
           </div>
           
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs">
