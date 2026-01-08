@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import Icon from '@/components/ui/icon';
 
 interface HeaderProps {
   activeSection: string;
@@ -13,17 +14,25 @@ const Header = ({ activeSection }: HeaderProps) => {
           <h1 className="text-xl font-bold tracking-wider">ABYSSAL</h1>
         </div>
         <nav className="hidden md:flex gap-8 text-sm">
-          <a href="#about" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'about' ? 'active' : ''}`}>
+          <a href="#about" className={`nav-link hover:text-primary transition-colors tracking-wide flex items-center gap-2 ${activeSection === 'about' ? 'active' : ''}`}>
+            <Icon name="Info" size={16} />
             О проекте
           </a>
-          <a href="#features" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'features' ? 'active' : ''}`}>
+          <a href="#features" className={`nav-link hover:text-primary transition-colors tracking-wide flex items-center gap-2 ${activeSection === 'features' ? 'active' : ''}`}>
+            <Icon name="Sparkles" size={16} />
             Особенности
           </a>
-          <a href="#play" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'play' ? 'active' : ''}`}>
+          <a href="#play" className={`nav-link hover:text-primary transition-colors tracking-wide flex items-center gap-2 ${activeSection === 'play' ? 'active' : ''}`}>
+            <Icon name="Gamepad2" size={16} />
             Играть
           </a>
-          <a href="#team" className={`nav-link hover:text-primary transition-colors tracking-wide ${activeSection === 'team' ? 'active' : ''}`}>
+          <a href="#team" className={`nav-link hover:text-primary transition-colors tracking-wide flex items-center gap-2 ${activeSection === 'team' ? 'active' : ''}`}>
+            <Icon name="Users" size={16} />
             Команда
+          </a>
+          <a href="#info" className={`nav-link hover:text-primary transition-colors tracking-wide flex items-center gap-2 ${activeSection === 'info' ? 'active' : ''}`}>
+            <Icon name="Link" size={16} />
+            Ссылки
           </a>
         </nav>
         <div className="flex gap-4">

@@ -18,6 +18,18 @@ const HeroSection = () => {
           <span className="text-primary">Abyssal</span> — это уникальный <span className="text-primary">SCP RP</span> проект разработанный на базе игры <span className="text-primary">Garry's Mod</span>,<br />
           который предлагает своим игрокам погрузиться в мир <span className="text-primary">океанской бездны</span>
         </p>
+        <div className="flex justify-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+          <button
+            onClick={() => window.location.href = '/donate'}
+            className="group relative px-10 py-4 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-full border-2 border-primary text-white font-bold text-lg tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(29,185,84,0.6)] overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+            <span className="relative z-10 flex items-center gap-2">
+              <Icon name="Wallet" size={24} />
+              Пополнить баланс
+            </span>
+          </button>
+        </div>
         <a href="#about" className="flex justify-center items-center gap-2 animate-bounce cursor-pointer" style={{ animationDelay: '1s' }}>
           <Icon name="ChevronDown" size={20} />
           <span className="text-sm tracking-widest">Прокрутить</span>
