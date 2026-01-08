@@ -348,7 +348,7 @@ const Donate = () => {
               <a href="https://discord.gg/jXuuBA9GXr" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
                 <Icon name="MessageCircle" size={20} />
               </a>
-              <a href="https://www.youtube.com/@newmzmeyleveldesign" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
+              <a href="https://www.youtube.com/@env_snake" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300">
                 <Icon name="Youtube" size={20} />
               </a>
             </div>
