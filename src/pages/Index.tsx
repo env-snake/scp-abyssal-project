@@ -10,6 +10,7 @@ const Index = () => {
   const [hoveredTab, setHoveredTab] = useState<number>(1);
   const [autoScrollTab, setAutoScrollTab] = useState<number>(1);
   const [isHoveringTabs, setIsHoveringTabs] = useState(false);
+  const [scrollOpacity, setScrollOpacity] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,6 +35,11 @@ const Index = () => {
       });
       
       setActiveSection(current || '');
+      
+      const scrollY = window.scrollY;
+      const maxScroll = 800;
+      const opacity = Math.min(scrollY / maxScroll, 0.7);
+      setScrollOpacity(opacity);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -85,6 +91,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
+      <div 
+        className="fixed inset-0 bg-black pointer-events-none z-[5] transition-opacity duration-300"
+        style={{ opacity: scrollOpacity }}
+      ></div>
+      
       <div 
         className="fixed pointer-events-none z-0 rounded-full blur-3xl transition-opacity duration-300"
         style={{

@@ -11,6 +11,7 @@ const Donate = () => {
   const [loading, setLoading] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState('donate');
+  const [scrollOpacity, setScrollOpacity] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -26,8 +27,18 @@ const Donate = () => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const maxScroll = 800;
+      const opacity = Math.min(scrollY / maxScroll, 0.7);
+      setScrollOpacity(opacity);
+    };
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const quickAmounts = [100, 500, 1000, 2000, 5000];
@@ -130,6 +141,11 @@ const Donate = () => {
 
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#051510]">
+      <div 
+        className="fixed inset-0 bg-black pointer-events-none z-[5] transition-opacity duration-300"
+        style={{ opacity: scrollOpacity }}
+      ></div>
+      
       <div 
         className="fixed pointer-events-none z-0 rounded-full blur-3xl transition-opacity duration-300"
         style={{
