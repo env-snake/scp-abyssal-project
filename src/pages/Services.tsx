@@ -1,23 +1,39 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
 const Services = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen text-white bg-[#051510]">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#051510]/90 backdrop-blur-sm border-b border-primary/20">
+      <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-primary/20 transition-all duration-300 ${
+        scrolled ? 'bg-[#051510]/95' : 'bg-[#051510]/90'
+      }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img src="https://cdn.poehali.dev/files/4468007d-3ca2-4d75-af22-bd7b04f04385.png" alt="Abyssal" className="w-10 h-10" />
             <h1 className="text-xl font-bold tracking-wider">ABYSSAL</h1>
           </a>
-          <Button 
+          <button
             onClick={() => window.history.back()}
-            className="bg-primary/10 text-primary border-2 border-primary hover:bg-primary hover:text-black transition-all duration-300 px-6 flex items-center gap-2 group"
+            className="info-bar-grid relative px-6 py-3 bg-card/50 backdrop-blur-sm border-2 border-primary/30 hover:border-primary rounded-xl text-primary font-bold text-sm tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(29,185,84,0.3)] overflow-hidden group"
           >
-            <Icon name="ArrowLeft" size={18} className="group-hover:-translate-x-1 transition-transform duration-300" />
-            Вернуться
-          </Button>
+            <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-300"></div>
+            <span className="relative z-10 flex items-center gap-2">
+              <Icon name="ArrowLeft" size={18} className="group-hover:-translate-x-1 transition-transform duration-300" />
+              Вернуться
+            </span>
+          </button>
         </div>
       </header>
 
