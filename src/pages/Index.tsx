@@ -12,6 +12,7 @@ const Index = () => {
   const [isHoveringTabs, setIsHoveringTabs] = useState(false);
   const [scrollOpacity, setScrollOpacity] = useState(0);
   const [footerBgColor, setFooterBgColor] = useState('rgba(5, 21, 16, 0.9)');
+  const [headerBgColor, setHeaderBgColor] = useState('rgba(5, 21, 16, 0.9)');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,9 +53,11 @@ const Index = () => {
           const g = Math.round(21 - opacity * 21);
           const b = Math.round(16 - opacity * 16);
           setFooterBgColor(`rgba(${r}, ${g}, ${b}, 0.9)`);
+          setHeaderBgColor(`rgba(${r}, ${g}, ${b}, 0.9)`);
         } else {
           setScrollOpacity(0);
           setFooterBgColor('rgba(5, 21, 16, 0.9)');
+          setHeaderBgColor('rgba(5, 21, 16, 0.9)');
         }
       }
     };
@@ -152,7 +155,7 @@ const Index = () => {
         }}
       ></div>
 
-      <Header activeSection={activeSection} />
+      <Header activeSection={activeSection} bgColor={headerBgColor} />
 
       <main className="relative z-10">
         <HeroSection />
