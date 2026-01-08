@@ -242,6 +242,7 @@ const Donate = () => {
                     onClick={handleDonate}
                     disabled={loading}
                     className="w-full group relative px-10 py-4 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-full border-2 border-primary text-white font-bold text-lg tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(29,185,84,0.6)] overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
                     <span className="relative z-10 flex items-center justify-center gap-2">
@@ -331,8 +332,8 @@ const Donate = () => {
                 <div className="flex items-center gap-2">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="MasterCard" className="h-4 opacity-70" />
                   <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3 opacity-70" />
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Mir_logo.svg" alt="МИР" className="h-3 opacity-70" />
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/SBP_logo.svg" alt="СБП" className="h-4 opacity-70" />
+                  <span className="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>МИР</span>
+                  <span className="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>СБП</span>
                 </div>
               </div>
             </div>
