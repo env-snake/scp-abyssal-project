@@ -43,7 +43,7 @@ const Header = ({ activeSection, bgColor = 'rgba(5, 21, 16, 0.9)' }: HeaderProps
         <div className="flex gap-4">
           <button
             onClick={() => window.location.href = '/donate'}
-            className="group relative px-8 py-3 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-full border-2 border-primary text-white font-bold text-sm tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(29,185,84,0.5)] overflow-hidden"
+            className="info-bar-grid group relative px-8 py-3 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-full border-2 border-primary text-white font-bold text-sm tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(29,185,84,0.5)] overflow-hidden"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>

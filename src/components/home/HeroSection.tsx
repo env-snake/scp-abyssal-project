@@ -22,7 +22,7 @@ const HeroSection = () => {
         <div className="flex flex-col items-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <button
             onClick={() => window.location.href = 'steam://connect/212.22.85.156:25565'}
-            className="group relative px-16 py-6 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-full border-2 border-primary text-white font-bold text-2xl tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_50px_rgba(29,185,84,0.7)] overflow-hidden"
+            className="info-bar-grid group relative px-16 py-6 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-full border-2 border-primary text-white font-bold text-2xl tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_50px_rgba(29,185,84,0.7)] overflow-hidden"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
