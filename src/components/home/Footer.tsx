@@ -17,20 +17,43 @@ const Footer = ({ bgColor = 'rgba(5, 21, 16, 0.9)' }: FooterProps) => {
             <span className="text-sm tracking-wider opacity-80">© 2026 ABYSSAL. Все права защищены</span>
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs">
-            <div className="flex items-center gap-4 opacity-70">
-              <a href="/terms" className="hover:text-primary transition-colors">Оферта</a>
-              <span>|</span>
-              <a href="/privacy" className="hover:text-primary transition-colors">Политика конфиденциальности</a>
-            </div>
+          <div className="flex flex-col items-center gap-4">
+            <a href="mailto:contact@abyssalscp.ru" className="flex items-center gap-2 opacity-70 hover:text-primary hover:opacity-100 transition-all">
+              <Icon name="Mail" size={16} />
+              <span className="text-sm">contact@abyssalscp.ru</span>
+            </a>
             
-            <div className="flex items-center gap-3">
-              <span className="opacity-60">Способы оплаты:</span>
-              <div className="flex items-center gap-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="MasterCard" className="h-4 opacity-70" />
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3 opacity-70" />
-                <span className="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>МИР</span>
-                <span className="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>СБП</span>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs">
+              <div className="flex items-center gap-4 opacity-70">
+                <a href="/terms" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                  <Icon name="FileText" size={14} />
+                  <span>Оферта</span>
+                </a>
+                <span>|</span>
+                <a href="/privacy" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                  <Icon name="Shield" size={14} />
+                  <span>Политика конфиденциальности</span>
+                </a>
+                <span>|</span>
+                <a href="/refund" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                  <Icon name="RefreshCw" size={14} />
+                  <span>Политика возврата</span>
+                </a>
+                <span>|</span>
+                <a href="/services" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                  <Icon name="Package" size={14} />
+                  <span>Услуги</span>
+                </a>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <span className="opacity-60">Способы оплаты:</span>
+                <div className="flex items-center gap-2">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="MasterCard" className="h-4 opacity-70" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3 opacity-70" />
+                  <span className="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>МИР</span>
+                  <span className="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>СБП</span>
+                </div>
               </div>
             </div>
           </div>
