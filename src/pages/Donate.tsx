@@ -312,7 +312,7 @@ const Donate = () => {
               <span className="text-sm">contact@abyssalscp.ru</span>
             </a>
             
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-3">
               <div className="flex flex-wrap items-center justify-center gap-6 text-xs">
                 <div className="flex items-center gap-4 opacity-70">
                   <a href="/terms" className="flex items-center gap-1.5 hover:text-primary transition-colors">
@@ -335,15 +335,15 @@ const Donate = () => {
                     <span>Услуги</span>
                   </a>
                 </div>
-                
-                <div className="flex items-center gap-3">
-                  <span className="opacity-60">Способы оплаты:</span>
-                  <div className="flex items-center gap-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="MasterCard" className="h-4 opacity-70" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3 opacity-70" />
-                    <span className="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>МИР</span>
-                    <span className="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>СБП</span>
-                  </div>
+              </div>
+              
+              <div className="flex items-center gap-3 text-xs">
+                <span className="opacity-60">Способы оплаты:</span>
+                <div className="flex items-center gap-2">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="MasterCard" className="h-4 opacity-70" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-3 opacity-70" />
+                  <span className="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>МИР</span>
+                  <span className="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded opacity-70" style={{ fontFamily: 'Montserrat, sans-serif' }}>СБП</span>
                 </div>
               </div>
             </div>

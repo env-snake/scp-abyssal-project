@@ -23,30 +23,32 @@ const Footer = ({ bgColor = 'rgba(5, 21, 16, 0.9)' }: FooterProps) => {
               <span className="text-sm">contact@abyssalscp.ru</span>
             </a>
             
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs">
-              <div className="flex items-center gap-4 opacity-70">
-                <a href="/terms" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                  <Icon name="FileText" size={14} />
-                  <span>Оферта</span>
-                </a>
-                <span>|</span>
-                <a href="/privacy" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                  <Icon name="Shield" size={14} />
-                  <span>Политика конфиденциальности</span>
-                </a>
-                <span>|</span>
-                <a href="/refund" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                  <Icon name="RefreshCw" size={14} />
-                  <span>Политика возврата</span>
-                </a>
-                <span>|</span>
-                <a href="/services" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                  <Icon name="Package" size={14} />
-                  <span>Услуги</span>
-                </a>
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-wrap items-center justify-center gap-6 text-xs">
+                <div className="flex items-center gap-4 opacity-70">
+                  <a href="/terms" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                    <Icon name="FileText" size={14} />
+                    <span>Оферта</span>
+                  </a>
+                  <span>|</span>
+                  <a href="/privacy" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                    <Icon name="Shield" size={14} />
+                    <span>Политика конфиденциальности</span>
+                  </a>
+                  <span>|</span>
+                  <a href="/refund" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                    <Icon name="RefreshCw" size={14} />
+                    <span>Политика возврата</span>
+                  </a>
+                  <span>|</span>
+                  <a href="/services" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                    <Icon name="Package" size={14} />
+                    <span>Услуги</span>
+                  </a>
+                </div>
               </div>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 text-xs">
                 <span className="opacity-60">Способы оплаты:</span>
                 <div className="flex items-center gap-2">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="MasterCard" className="h-4 opacity-70" />
