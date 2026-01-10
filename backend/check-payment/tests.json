@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "Test missing invoiceId",
+      "method": "POST",
+      "path": "/",
+      "body": {},
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test with invoiceId",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "invoiceId": "12345"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "invoiceId": "string",
+        "status": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
